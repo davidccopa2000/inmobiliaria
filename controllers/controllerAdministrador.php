@@ -12,27 +12,35 @@ if(isset($_SERVER['REQUEST_METHOD'])){
                  * logica de registro con ddbb
                  * 
                  */
-                $ctrl=true;
-                require_once("../models/administrador.php");
-                $obj= new administrador();
-                $dni=$_POST['dni'];
-                $nombre=$_POST['nombre'];
-                $apellido=$_POST['apellido'];
-                $direccion=$_POST['direccion'];
-                $tel=$_POST['contacto'];
-                $email=$_POST['email'];
-                $sexo=$_POST['radio'];
-                $birthDay=$_POST['fecha'];
-                $user=$_POST['user'];
-                $pass=$_POST['pass'];
-               // href="controllers/controllerAdministrador.php?action=registrarCliente"
-                //echo "estamos aqui";
-
-                $obj->createPeople($dni,$nombre,$apellido,$direccion,$tel,$email,$sexo,$birthDay,$user,$pass);
-                $obj->createClient($dni);
-                //$obj=null;
-               // $ctrl=null;
-                header("location:http://localhost/inmobiliaria/admin-tabla-clientes.php");
+                    
+                    $ctrl=true;
+                    require_once("../models/administrador.php");
+                    $obj= new administrador();
+                    $dni=$_POST['dni'];
+                    $nombre=$_POST['nombre'];
+                    $apellido=$_POST['apellido'];
+                    $direccion=$_POST['direccion'];
+                    $tel=$_POST['contacto'];
+                    $email=$_POST['email'];
+                    $sexo=$_POST['radio'];
+                    $birthDay=$_POST['fecha'];
+                    $user=$_POST['user'];
+                    $pass=$_POST['pass'];
+                // href="controllers/controllerAdministrador.php?action=registrarCliente"
+                    //echo "estamos aqui";
+                 
+                    $fileName=$_FILES['archivo']['name'];
+                    $save=$_FILES['archivo']['tmp_name'];
+                    move_uploaded_file($save,'../img-uploaded/'.$fileName);
+                     //echo "estamos aqui";
+                   // print_r($fileName);
+                    //print_r($save);
+                    $obj->createPeople($dni,$nombre,$apellido,$direccion,$tel,$email,$sexo,$birthDay,$user,$pass,$fileName);
+                    $obj->createClient($dni);
+                    //$obj=null;
+                // $ctrl=null;
+                    header("location:http://localhost/inmobiliaria/admin-tabla-clientes.php");
+              
             }
         }
 
@@ -54,6 +62,7 @@ if(isset($_SERVER['REQUEST_METHOD'])){
 
             header("location:http://localhost/inmobiliaria/admin-tabla-clientes.php");
         }
+
         else if($_GET['action']=="registrarCliente"){
 
             header("location:http://localhost/inmobiliaria/add-table-cliente.php");

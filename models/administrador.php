@@ -27,16 +27,21 @@ class administrador{
      * get all users from table people
      */
     public function listUsers(){
-        $sql="SELECT id_people,dni,first_name,last_name,adress,email,is_active FROM people";
+        $sql="SELECT id_people,dni,first_name,last_name,adress,email,is_active FROM people WHERE is_user=3";
         $rs=$this->con->prepare($sql);
         $rs->execute();
         return $rs->fetchAll(PDO::FETCH_OBJ);
     }
-
+    public function getUsers(){
+        $sql="SELECT people.*,client.ruc_client FROM people,client  WHERE people.id_people=client.id_people AND  is_user=3 ";
+        $rs=$this->con->prepare($sql); 
+        $rs->execute();
+        return $rs->fetchAll(PDO::FETCH_OBJ);
+    }
     /**
      * set register user client
      */
-    public function createPeople($dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass){
+    public function createPeople($dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$ruta){
         /**
          * action 1: access system
          * action 0: is active
@@ -49,7 +54,7 @@ class administrador{
        // $sql="INSERT INTO people(id_people,dni,first_name,last_name) VALUES(?,?,?,?)";
         $rs=$this->con->prepare($sql);
         //$rs->execute(array($logueado,$dni,$nombre,$apellido));
-        $rs->execute(array($logueado,$dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$active,$logueado,3,$var));
+        $rs->execute(array($logueado,$dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$active,$logueado,3,$ruta));
     }
     public function createClient($dni){
         $idPeople=$this->getIdPeople($dni);
@@ -78,6 +83,12 @@ class administrador{
         $sql="DELETE FROM people WHERE id_people=? ";
         $rs=$this->con->prepare($sql);
         $rs->execute(array($idPeople));
+    }
+    public function get($dni){
+        $sql="SELECT * FROM people WHERE last_name LIKE '%?%' or dni like '%?%'";
+        $rs=$this->con->prepare($sql);
+        $rs->execute();
+        return $rs->fetch(PDO::FETCH_OBJ);
     }
 
 

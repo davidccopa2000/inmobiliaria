@@ -14,20 +14,20 @@ eliminar.forEach(function(e){
 
           
           Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Estas seguro?',
+            text: "No podrás revertir esto!,Si Solo Deseas desabiliarlo del sistema dirigete a modificar !",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
+            confirmButtonText: 'Si, Eliminar!',
+            cancelButtonText: 'No, Cancelar!',
             reverseButtons: true
           }).then((result) => {
             if (result.value) {
                 window.location.href = `controllers/controllerAdministrador.php?action=eliminarCliente&idPeople=${e.value}`;
               swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
+                'Eliminado!',
+                'Cliente Eliminado.',
+                'Exitosamente'
               )
               
             } else if (
@@ -35,8 +35,8 @@ eliminar.forEach(function(e){
               result.dismiss === Swal.DismissReason.cancel
             ) {
               swal.fire(
-                'Cancelled',
-                'Your imaginary file is safe :)',
+                'Cancelado',
+                'Se cancelo el proceso :)',
                 'error'
               )
             }

@@ -53,7 +53,7 @@ if(!isset($_SESSION['name'])){
                 Inmuebles
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="?a=pageDocente">Propias</a>
+          <a class="dropdown-item text-primary" href="propiedad-cliente.php">Propias</a>
           <a class="dropdown-item text-primary" href="#">Clientes</a>
         </div>
         </li>
