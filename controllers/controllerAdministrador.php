@@ -5,14 +5,52 @@ if(isset($_SERVER['REQUEST_METHOD'])){
 
     if($_SERVER['REQUEST_METHOD']==='POST'){
         if(isset($_POST['actualizar'])){
-            echo "actuaizzamos";
+
+            if($_GET['tipo']=="cliente"){
+                    
+                    $ctrl=true;
+                    require_once("../models/administrador.php");
+                    $obj= new administrador();
+                    $dni=$_POST['dni'];
+                    $nombre=$_POST['nombre'];
+                    $apellido=$_POST['apellido'];
+                    $direccion=$_POST['direccion'];
+                    $tel=$_POST['tel'];
+                    $email=$_POST['email'];
+                    $sexo=$_POST['radio'];
+                    $birthDay=$_POST['fecha'];
+                    $user=$_POST['user'];
+                    $pass=$_POST['pass'];
+                   
+                    $is_active=($_POST['is_active']=="Vigente")?"1":"0";
+                    if($_POST['is_user']=="Cliente"){
+                        $is_user="3";
+                    }else if($_POST['is_user']=="Empleado"){
+                        $is_user="2";
+                    }
+                    else{
+                        $is_user="1";
+                    }
+                   
+                    $id=$_GET['id'];
+                    $ruc_client=$_POST['ruc_client'];
+
+                    $fileName=$_FILES['archivo']['name'];
+                    $save=$_FILES['archivo']['tmp_name'];
+                    move_uploaded_file($save,'../img-uploaded/'.$fileName);
+                    
+                    $obj->updatePeople($id,$nombre,$apellido,$direccion,$tel,$email,$sexo,$birthDay,$user,$pass,$is_active,$is_user,$fileName);
+                    $obj->updateClient($dni,$ruc_client);
+                   // echo "estamos en update clint".$dni.$nombre.$apellido.$direccion.$tel.$email.$sexo.$birthDay.$user.$pass.$is_active.$is_user.$is_staff;
+                   header("location:http://localhost/inmobiliaria/admin-tabla-clientes.php");
+            }
+            
         }else if(isset($_GET['tipo'])){
             if($_GET['tipo']=="cliente"){
                 /**
                  * logica de registro con ddbb
                  * 
-                 */
-                    
+                 */                
                     $ctrl=true;
                     require_once("../models/administrador.php");
                     $obj= new administrador();

@@ -408,33 +408,37 @@ foreach($users as $c):
                           <div class="col-md-6 pr-5 pl-5 " style="background: #ffff ; border-radius:0.70rem;">
                                       <!--order-md-1-->
                                       
-                                <form class="needs-validation"  novalidate action="#">
+                                <form class="needs-validation"  action="controllers/controllerAdministrador.php?tipo=cliente&id=<?php echo $c->id_people; ?>" method="post" enctype="multipart/form-data"  novalidate>
                                     <div class="imgcontainer">
                                         <span onclick="document.getElementById('<?php echo $c->id_people; ?>').style.display='none'" class="close" title="Close Modal">&times;</span>
-                                        <img src="assets/img/principal/img_avatar2.png"  style="width:20%;"  alt="Avatar" class="avatar">
+                                        <?php if($c->from_url){?>
+                                        <img src="img-uploaded/<?php echo $c->from_url; ?>"  style="width:20%;"  alt="Avatar" class="avatar">
+                                        <?php }else{ ?>
+                                          <img src="assets/img/principal/img_avatar2.png"  style="width:20%;"  alt="Avatar" class="avatar">
+                                        <?php } ?>
                                       </div>
                                       <div style="margin-left:39%;" >
-                                         <input type="file" name="file" >
+                                         <input type="file" name="archivo" >
                                       </div>
                                     <h4 class="mb-3 pt-5 text-primary">Información del Cliente</h4>
                                       <div class="row">
                                         <div class="col-md-6 mb-3">
-                                          <label class="text-primary" for="firstName">Dni</label>
-                                          <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo $c->dni; ?>" required>
+                                          <label class="text-primary" for="firstName" >Dni</label>
+                                          <input type="text" class="form-control" name="dni" placeholder="" value="<?php echo $c->dni; ?>" required>
                                           <div class="invalid-feedback">
                                             Valid first name is required.
                                           </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                           <label class="text-primary "for="firstName">Nombre</label>
-                                          <input type="text" class="form-control" id="firstName" placeholder="" value="<?php echo $c->first_name; ?>" required>
+                                          <input type="text" class="form-control" name="nombre" placeholder="" value="<?php echo $c->first_name; ?>" required>
                                           <div class="invalid-feedback">
                                             Valid first name is required.
                                           </div>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                           <label class="text-primary " for="lastName">Apellido</label>
-                                          <input type="text" class="form-control" id="lastName" placeholder="" value="<?php echo $c->last_name; ?>" required>
+                                          <input type="text" class="form-control" name="apellido" placeholder="" value="<?php echo $c->last_name; ?>" required>
                                           <div class="invalid-feedback">
                                             Valid last name is required.
                                           </div>
@@ -442,7 +446,7 @@ foreach($users as $c):
                                         
                                         <div class="col-md-6 mb-3">
                                           <label class="text-primary" for="lastName">Teléfono</label>
-                                          <input type="text" class="form-control" id="lastName" placeholder="" value="<?php echo $c->phone; ?>" required>
+                                          <input type="text" class="form-control" name="tel" placeholder="" value="<?php echo $c->phone; ?>" required>
                                           <div class="invalid-feedback">
                                             Valid last name is required.
                                           </div>
@@ -450,22 +454,43 @@ foreach($users as $c):
                                         
     
                                         <div class="col-md-6 mb-3">
+                                        <?php 
+                                        $m='';
+                                        $f='';
+                                        if($c->sexo==1){
+                                        ?>
                                         <label >Sexo </label> <br>
                                         <label>Masculino 
-                                        <input type="radio"  name="radio" value="1"  <?php echo ($c->sexo==1)?'selected':''; ?>>
+                                        <input type="radio"  name="radio" value="1" checked>
                                         <span class="checkmark"></span>
                                         </label><br>
                                         <label >Femenino
-                                        <input type="radio" name="radio" value="0" <?php echo ($c->sexo==0)?'selected':''; ?>>
+                                        <input type="radio" name="radio" value="0"  >
                                         <span class="checkmark"></span>
                                         </label>
+                                        <?php
+                                        }else{
+                                        ?>
+                                        <label >Sexo </label> <br>
+                                        <label>Masculino 
+                                        <input type="radio"  name="radio" value="1" >
+                                        <span class="checkmark"></span>
+                                        </label><br>
+                                        <label >Femenino
+                                        <input type="radio" name="radio" value="0" checked>
+                                        <span class="checkmark"></span>
+                                        </label>
+                                        <?php
+                                        }
+                                        ?>
+                                        
 
                                         
                                         
                                       </div>
                                         <div class="col-md-6 mb-3">
                                           <label class="text-primary" for="lastName">N° Ruc</label>
-                                          <input type="text" class="form-control " id="lastName" placeholder="" value="<?php echo $c->ruc_client; ?>" required>
+                                          <input type="text" class="form-control " name="ruc_client" placeholder="" value="<?php echo $c->ruc_client; ?>" required>
                                           <div class="invalid-feedback">
                                             Valid last name is required.
                                           </div>
@@ -475,14 +500,14 @@ foreach($users as $c):
                                       </div>
                                       <div class="mb-3">
                                         <label class="text-primary" for="address">Dirección</label>
-                                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" value="<?php echo $c->adress; ?>" required>
+                                        <input type="text" class="form-control" name="direccion" placeholder="1234 Main St" value="<?php echo $c->adress; ?>" required>
                                         <div class="invalid-feedback">
                                           Please enter your shipping address.
                                         </div>
                                       </div>
                                       <div class="mb-3">
                                         <label class="text-primary" for="address">Fecha de Nacimiento</label>
-                                        <input type="date" class="form-control" id="address" placeholder="1234 Main St" value="<?php echo $c->date_birthday; ?>" required>
+                                        <input type="date" class="form-control" name="fecha" placeholder="1234 Main St" value="<?php echo $c->date_birthday; ?>" required>
                                         <div class="invalid-feedback">
                                           Please enter your shipping address.
                                         </div>
@@ -490,7 +515,7 @@ foreach($users as $c):
     
                                       <div class="mb-3">
                                         <label class="text-primary" for="email">Email <span class="text-muted">(Optional)</span></label>
-                                        <input type="email" class="form-control" id="email" placeholder="you@example.com" value="<?php echo $c->email; ?>">
+                                        <input type="email" class="form-control" name="email" placeholder="you@example.com" value="<?php echo $c->email; ?>">
                                         <div class="invalid-feedback">
                                           Please enter a valid email address for shipping updates.
                                         </div>
@@ -502,7 +527,7 @@ foreach($users as $c):
                                           <div class="input-group-prepend">
                                             <span class="input-group-text">@</span>
                                           </div>
-                                          <input type="text" class="form-control" id="username" placeholder="Username" value="<?php echo $c->user_name; ?>" required>
+                                          <input type="text" class="form-control" name="user" placeholder="Username" value="<?php echo $c->user_name; ?>" required>
                                           <div class="invalid-feedback" style="width: 100%;">
                                             Your username is required.
                                           </div>
@@ -514,7 +539,7 @@ foreach($users as $c):
                                           <div class="input-group-prepend">
                                             <span class="input-group-text">@</span>
                                           </div>
-                                          <input type="text" class="form-control" id="username" placeholder="Username" value="<?php echo $c->pass; ?>" required>
+                                          <input type="text" class="form-control" name="pass" placeholder="Username" value="<?php echo $c->pass; ?>" required>
                                           <div class="invalid-feedback" style="width: 100%;">
                                             Your username is required.
                                           </div>
@@ -524,19 +549,31 @@ foreach($users as $c):
     
                                       <div class="row">
                                         <div class="col-md-5 mb-3">
+                                        <?php if($c->is_active==1){?>
                                           <label class="text-primary" for="country">Estado </label>
-                                          <select class="custom-select d-block w-100" id="country" value="<?php echo $c->is_active; ?>" required>
+                                          <select class="custom-select d-block w-100" name="is_active" value="<?php echo $c->is_active; ?>" required>
                                             <option value="" disabled >Seleccione...</option>
-                                            <option>Vigente</option>
-                                            <option>Retirado</option>
+                                            <option selected>Vigente</option>
+                                            <option >Retirado</option>
                                           </select>
                                           <div class="invalid-feedback">
                                             Please select a valid country.
                                           </div>
+                                        <?php }else{?>
+                                          <label class="text-primary" for="country">Estado </label>
+                                          <select class="custom-select d-block w-100" name="is_active" value="<?php echo $c->is_active; ?>" required>
+                                            <option value="" disabled >Seleccione...</option>
+                                            <option>Vigente</option>
+                                            <option selected>Retirado</option>
+                                          </select>
+                                          <div class="invalid-feedback">
+                                            Please select a valid country.
+                                          </div>
+                                          <?php }?>
                                         </div>
                                         <div class="col-md-4 mb-3">
                                           <label class="text-primary " for="state">Tipo de Usuario</label>
-                                          <select class="custom-select d-block w-100" id="state" value="<?php echo $c->is_user; ?>" required>
+                                          <select class="custom-select d-block w-100" name="is_user" value="<?php echo $c->is_user; ?>" required>
                                             <option value="" disabled>Seleccione...</option>
                                             <option>Cliente</option>
                                             <option>Empleado</option>
@@ -549,7 +586,7 @@ foreach($users as $c):
                                         </div>
                                         <div class="col-md-3 mb-3">
                                           <label class="text-primary" for="zip">Logueado</label>
-                                          <input type="text" class="form-control" id="zip" placeholder="" required value="<?php echo $c->is_staff; ?>">
+                                          <input type="text" class="form-control" name="is_staff" placeholder="" required value="<?php echo $c->is_staff; ?>">
                                           <div class="invalid-feedback">
                                             Zip code required.
                                           </div>
@@ -557,14 +594,14 @@ foreach($users as $c):
                                       </div>
                                       <hr class="mb-4">
                                       <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="same-address">
+                                        <input type="checkbox" class="custom-control-input" name="same-address">
                                         <label    class="custom-control-label text-primary" for="same-address">Shipping address is the same as my billing address</label>
                                       </div>
                                       <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="save-info">
                                         <label class="custom-control-label text-primary" for="save-info">Save this information for next time</label>
                                       </div>
-                                      <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">actualizar</button>
+                                      <button class="btn btn-primary btn-lg btn-block mb-5" name="actualizar" type="submit">actualizar</button>
                                       <div class="container" style="background-color:#f1f1f1">
                                         <button type="button" onclick="document.getElementById('<?php echo $c->id_people; ?>').style.display='none'" class="cancelbtn" >Cancel</button>
                                         <span class="psw">Forgot <a href="#">password?</a></span>

@@ -8,6 +8,9 @@ if(!isset($_SESSION['name'])){
 }else if($_SESSION['rol']!='1'){
     header("location:http://localhost/inmobiliaria/");
 }
+
+require_once("models/administrador.php");
+$obj=new administrador();
 ?>
 
 
@@ -132,7 +135,14 @@ if(!isset($_SESSION['name'])){
           <h4 class="text-center">Le damos una cordial bienvenida al sistema de Inmobiliaria Ccopa !</h4><br>
           <br>
           <p class="text-center">
-            <img src="assets/img/administrador/admin3.jpg"alt="" style="width: 35%; border-radius:50%;">
+            <?php
+              $rs=$obj->getPhoto($_SESSION['id']);
+              if($rs->from_url){ ?>
+                <img src="img-uploaded/<?php echo $rs->from_url;?>"alt="" style="width: 35%; border-radius:50%;">
+            <?php} else {?>
+               <img src="assets/img/administrador/admin3.jpg" alt="" style="width: 35%; border-radius:50%;">  
+            <?php } ?>
+           
           </p>
           <h6 class="text-center">Administrador</h6>
       </div>

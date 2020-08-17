@@ -31,7 +31,7 @@ if(isset($_SERVER['REQUEST_METHOD'])){
             session_start();
             $_SESSION['name']=$obj->first_name.' '.$obj->last_name;
             $_SESSION['rol']=$rol=$obj->is_user;
-            
+            $_SESSION['id']=$obj->$id_people;
 
             header("location:http://localhost/inmobiliaria/administrador.php");
       
