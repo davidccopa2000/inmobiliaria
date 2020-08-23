@@ -251,7 +251,7 @@ class administrador{
 
 
 
-    /** CRUD INMUEBLE     */
+    /** CRUD INMUEBLE NOT USE FOR MOMET    */
 
     public function listInmueble($var){
         
@@ -275,8 +275,12 @@ class administrador{
         $rs=$this->con->prepare($sql);
         $rs->execute();
         return $rs->fetch(PDO::FETCH_OBJ);
-    }
+		}
 
+		/*
+		 * function is use for list view  inmueble-pagination
+		 * METHOD IS GET 
+		 * */
     public function list_limit($var,$page){
         if($page>1){
             $page=$page*6-6;
@@ -293,7 +297,17 @@ class administrador{
         $rs=$this->con->prepare($sql);
         $rs->execute(array($var));
         return $rs->fetchAll(PDO::FETCH_OBJ);
-    }
+		}
+
+		/*
+		 * METHOD IS POST
+		 * */
+		public function insert_inmueble($dni,$n_inmu,$t_inmu,$dist,$direc,$num,$superf,$habit,$banio,$cochera,$descrip,$precio,$url,$tipo_oper,$name_t_cont,$contrato,$tipos){
+			  $sql="CALL spRegistrarInmueble(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				$rs=$this->con->prepare($sql);
+				$rs->execute(array($dni,$n_inmu,$t_inmu,$dist,$direc,$num,$superf,$habit,$banio,$cochera,$descrip,$precio,$url,$tipo_oper,$name_t_cont,$contrato,$tipos));
+		}
+		
 
 
     /** CERRANDO SESSIONN  */

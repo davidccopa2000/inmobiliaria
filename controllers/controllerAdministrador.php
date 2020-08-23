@@ -119,7 +119,29 @@ if(isset($_SERVER['REQUEST_METHOD'])){
                 $obj->updateAdmin($dni,$salary,$date_in,$date_out);
                // echo "estamos en update clint".$dni.$nombre.$apellido.$direccion.$tel.$email.$sexo.$birthDay.$user.$pass.$is_active.$is_user.$is_staff;
                header("location:http://localhost/inmobiliaria/admin-tabla-admins.php");
-            }
+						}else if($_GET['tipo']=='inmueble'){
+								$crtl=true;
+								$require_once('../models/administrador.php');
+								$obj= new administrador();//use method insert_inmueble(nr_param=17)
+								$dni=$_POST['data_dni'];
+								$n_inmu=$_POST['data_nombre_inmueble'];
+								$t_inmu=$_POST['data_tipo_inmueble'];
+								$distrito=$_POST['data_distrito'];
+								$direccion=$_POST['data_direccion'];
+								$numero=$_POST['data_numero'];
+								$superficie=$_POST['data_superficie'];
+								$habitaciones=$_POST['data_habitaciones'];
+								$banio=$_POST['data_banio'];
+								$cochera=$_POST['data_cochera'];
+								$descripcion=$_POST['data_descripcion'];
+								$precio=$_POST['data_precio'];
+								$url=$_POST['data_url'];
+								$tipo_operacion=$_POST['data_tipo_operacion'];
+								$name_contrato=$_POST['data_name_contrato'];
+								$tipos=$_POST['data_tipos'];
+								$$obj->insert_inmueble();//pase param order
+								header('location:http://localhost/inmobiliaria/propiedad-cliente.php');
+						}
             
         }else if(isset($_GET['tipo'])){
             if($_GET['tipo']=="cliente"){
