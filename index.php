@@ -121,8 +121,8 @@
               </select>
             </div>
           </div>
-          <div class="col-md-12">
-            <button type="submit" class="btn btn-b">Buscar Propiedad</button>
+          <div class="col-md-12" >
+            <button type="submit" class="btn btn-b" >Buscar Propiedad</button>
           </div>
         </div>
       </form>
@@ -132,7 +132,10 @@
 
   <!--/ Nav Star /-->
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-  <img src="assets/img/principal/l.png" rel="icon" style=" margin=none; width:5.5%;"  position alt="">
+    <a href="index.php">
+      <img src="assets/img/principal/inmue.svg" rel="icon" style="padding-left:350px; width:90%"  position alt="">
+    </a>
+ <!-- <img src="assets/img/principal/inmue.svg" rel="icon" style="padding-left:500px; width:35%"  position alt="">-->
     <div class="container">
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -140,7 +143,7 @@
         <span></span>
         <span></span>
       </button>
-     
+      
       <a  rel="icon" class="navbar-brand text-brand" href="index.php" >Inmobiliaria<span class="color-b">Ccopita</span></a>
       <button type="button" class="btn btn-link nav-search navbar-toggle-box-collapse d-md-none" data-toggle="collapse"
         data-target="#navbarTogglerDemo01" aria-expanded="false">
@@ -182,10 +185,18 @@
         <span class="fa fa-search" aria-hidden="true"></span>
       </button>
 
-
+      <button type="button" class="btn btn-b-n  d-none d-md-block ml-2"  style="width:2.5rem; margin=2rem;" 
+      onclick="document.getElementById('id01').style.display='block'" >
+        <img src="assets/icon/administrador/login.svg"  style="width:22px;" alt="img-login">
+      </button>
 
       <!--here start the login  -->
-      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; height:3rem; ">Login</button>
+      <!--<div style="margin:20px;">
+        <button onclick="document.getElementById('id01').style.display='block'" style="background-img:url(assets/icon/administrador/login.svg); width:40px; height:40px;">
+            <img src="assets/icon/administrador/login.svg"  style="width:35px;" alt="img-login">
+        </button> 
+      </div>-->
+
 
       <div id="id01" class="modal" style="width:30%; margin:auto;">
           
@@ -206,13 +217,17 @@
               <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
               </label>
+              
             </div>
-
+           
+           
             <div class="container" style="background-color:#f1f1f1">
               <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" >Cancel</button>
               <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
+            
           </form>
+         
       </div>
       <!--here is ending the login  -->
 

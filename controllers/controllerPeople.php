@@ -8,14 +8,14 @@ if(isset($_SERVER['REQUEST_METHOD'])){
     if($_SERVER['REQUEST_METHOD']==='POST'){
         require_once("../models/people.php");
 
-        $obj= new people();
+        $people= new people();
         /**
          * capturamos datos enviados del formulario
          */
         $user=$_POST['username'];//DILAN
         $pass=$_POST['password'];//1234
 
-        $obj=$obj->validar($user,$pass);
+        $obj=$people->validar($user,$pass);
         
         
         if(!$obj){
@@ -23,15 +23,17 @@ if(isset($_SERVER['REQUEST_METHOD'])){
              * si el user no existe redirigimos al index
              */
             header("location:http://localhost/inmobiliaria/");
-        }else if($obj->is_user=='1'){
-
+        }else if($obj->is_user=='1' && $obj->is_active=='1'){
+            
             /**
              * usamos el objeto que nos retorna
              */
+            
             session_start();
             $_SESSION['name']=$obj->first_name.' '.$obj->last_name;
             $_SESSION['rol']=$rol=$obj->is_user;
-            $_SESSION['id']=$obj->$id_people;
+            $_SESSION['id']=$obj->id_people;
+            $people->status_loguin_on($_SESSION['id']);
 
             header("location:http://localhost/inmobiliaria/administrador.php");
       
@@ -51,6 +53,8 @@ if(isset($_SERVER['REQUEST_METHOD'])){
              */
             header("location:http://localhost/inmobiliaria/");
       
+        }else{
+            header("location:http://localhost/inmobiliaria/");
         }
         
     }else {

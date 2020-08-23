@@ -8,6 +8,8 @@ if(!isset($_SESSION['name'])){
 }else if($_SESSION['rol']!='1'){
     header("location:http://localhost/inmobiliaria/");
 }
+require_once("models/administrador.php");
+$obj=new administrador();
 ?>
 
 
@@ -44,7 +46,15 @@ if(!isset($_SESSION['name'])){
 <!---------------------------- navergador principal pantalla grande---------------------------------------------------------------->
 <nav class="navbar d-none d-sm-none d-lg-flex navbar-expand-lg bg-dark navbar-dark fixed-top " style=" width: 100%;">
     <a class="navbar-brand dropdown dropdown-toggle mr-3" href="navbardrop" id="navbardrop" data-toggle="dropdown">
-     <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">
+           <?php
+              
+              $foto=$obj->getPhoto($_SESSION['id']);
+              
+            if($foto->from_url ){ ?>
+                <img src="img-uploaded/<?php echo $foto->from_url;?>" alt="img_de admin" style="width:40px;height:40px; border-radius:55%;">
+            <?php } else { ?>
+                <img src="assets/img/administrador/admin3.jpg" alt="" style="width:40px; height:40px; border-radius:55%;">  
+            <?php } ?>
     </a>
         <div class="dropdown-menu bg-dark"> 
           <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
@@ -60,15 +70,15 @@ if(!isset($_SESSION['name'])){
         </li>
         -->
         <li class="nav-item">
-          <a id="inicio" class="nav-link" href="?a=inicio">INICIO</a>
+          <a id="inicio" class="nav-link" href="administrador.php">INICIO</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="?a=pageDocente">Propias</a>
-          <a class="dropdown-item text-primary" href="#">Clientes</a>
+          <a class="dropdown-item text-primary" href="?a=pageDocente">Clientes</a>
+          <a class="dropdown-item text-primary" href="#">Propias</a>
         </div>
         </li>
 <!-- Dropdown -->
@@ -76,13 +86,16 @@ if(!isset($_SESSION['name'])){
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Usuarios
           </a>
-        <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="?a=pageDocente">Empleados</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
-          <a class="dropdown-item text-primary" href="#">Administradores</a>
-        </div>
+          <div class="dropdown-menu bg-dark">
+            <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
+            <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
+            <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
+          </div>
         </li>
     </ul>
+    <a href="administrador.php">
+      <img src="assets/img/principal/logoin.svg" rel="icon" style="padding-left:1500px; width:93%"  position alt="">
+    </a>
 </nav> 
 
  <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
@@ -131,7 +144,7 @@ if(!isset($_SESSION['name'])){
       <div class="row">
         <div class="col-md-12 col-lg-8">
           <div class="title-single-box">
-            <h1 class="title-single">Nuestras increíbles propiedades</h1>
+            <h1 class="title-single"> Increíbles propiedades de Nuestros Clientes</h1>
             <span class="color-text-a">Cuadrícula de Propiedades </span>
           </div>
         </div>
@@ -149,13 +162,220 @@ if(!isset($_SESSION['name'])){
         </div>
       </div>
     </div>
+    <!-- HERE START THE FORM OF THE REGISTER PROPERTY-->
+    <div class="container-fluid" style="margin-top:100px;">
+      <div class="">
+        <div class="row"  style="margin-left:1500px;">
+          
+          <a class="btn btn-info " onclick="document.getElementById('id02').style.display='block'"  >
+              <img src="assets/icon/administrador/agregar.svg" class="p-0" style="width: 40px;" >
+          </a>
+          <div id="id02" class="modal" style="width:90%; margin:auto;">
+              
+            <div class="row" style="margin-top:8rem; margin-botton:4rem;">
+            <div class="col-md-3"></div>    
+
+            <div class="col-md-6 pr-5 pl-5 " style="background: #ffff ; border-radius:0.70rem;">
+            <!--order-md-1-->
+            
+          
+          <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=admin" method="post" enctype="multipart/form-data"  novalidate >
+            
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <img src="assets/img/principal/img_avatar2.png"  style="width:20%;"  alt="Avatar" class="avatar">
+            </div>
+            <div style="margin-left:39%;" >
+                <input type="file" name="archivo" >
+            </div>
+            <h4 class="mb-3 pt-5">Agrega un Nuevo Administrador</h4>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Dni</label>
+                <input type="text" class="form-control" name="dni" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="firstName">Nombre</label>
+                <input type="text" class="form-control" name="nombre" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Apellido</label>
+                <input type="text" class="form-control" name="apellido" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+              
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Teléfono</label>
+                <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+              
+
+              <div class="col-md-6 mb-3">
+              <label >Sexo </label> <br>
+              <label>Masculino 
+              <input type="radio"  name="radio" value="1">
+              <span class="checkmark"></span>
+              </label><br>
+              <label >Femenino
+              <input type="radio" name="radio" value="0">
+              <span class="checkmark"></span>
+              </label>
+              
+            </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Salario</label>
+                <input type="number" class="form-control" name="salary" placeholder="" value="<?php echo $c->salary; ?>" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+
+                 <div class="col-md-6 mb-3">
+                     <label for="lastName">Fecha de Entrada</label>
+                     <input type="date" class="form-control" name="date_in" placeholder="" value="<?php echo $c->date_in; ?>" required>
+                     <div class="invalid-feedback">
+                     Valid last name is required.
+                     </div>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                     <label for="lastName">Fecha de Salida</label>
+                     <input type="date" class="form-control" name="date_out" placeholder="" value="<?php echo $c->date_out; ?>" required>
+                     <div class="invalid-feedback">
+                     Valid last name is required.
+                     </div>
+                 </div>
+
+
+            </div>
+            <div class="mb-3">
+              <label for="address">Dirección</label>
+              <input type="text" class="form-control" name="direccion" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="address">Fecha de Nacimiento</label>
+              <input type="date" class="form-control" name="fecha" placeholder="1234 Main St" required>
+              <div class="invalid-feedback">
+                Please enter your shipping address.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="email">Email <span class="text-muted">(Optional)</span></label>
+              <input type="email" class="form-control" name="email" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="username">Usuario</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input type="text" class="form-control" name="user" placeholder="Username" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="username">Contraseña</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">@</span>
+                </div>
+                <input type="text" class="form-control" name="pass" placeholder="Username" required>
+                <div class="invalid-feedback" style="width: 100%;">
+                  Your username is required.
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label for="country">Estado </label>
+                <select class="custom-select d-block w-100" name="country" required>
+                  <option value="" disabled >Seleccione...</option>
+                  <option>Vigente</option>
+                  <option>Retirado</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="state">Tipo de Usuario</label>
+                <select class="custom-select d-block w-100" name="state" required>
+                  <option value="" disabled>Seleccione...</option>
+                  <option>Cliente</option>
+                  <option>Empleado</option>
+                  <option>Administrador</option>
+
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="zip">Logueado</label>
+                <input type="text" class="form-control" name="zip" placeholder="" required>
+                <div class="invalid-feedback">
+                  Zip code required.
+                </div>
+              </div>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="same-address">
+              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="save-info">
+              <label class="custom-control-label" for="save-info">Save this information for next time</label>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Registrar</button>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" >Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-3"></div>  
+    </div>
+
+    <!-- / END THE FORM OF -->
   </section>
   <!--/ Intro Single End /-->
+
+
+
+
+    
+
 
   <!--/ Property Grid Star /-->
   <section class="property-grid grid">
     <div class="container">
       <div class="row">
+      
         <div class="col-sm-12">
           <div class="grid-option">
             <form>
@@ -168,6 +388,11 @@ if(!isset($_SESSION['name'])){
             </form>
           </div>
         </div>
+        <?php 
+          $rs=$obj->list_limit(0,$_GET['numeros']);
+          foreach($rs as $inmueble):
+
+        ?>
         <div class="col-md-4">
           <div class="card-box-a card-shadow">
             <div class="img-box-a">
@@ -177,13 +402,13 @@ if(!isset($_SESSION['name'])){
               <div class="card-overlay-a-content">
                 <div class="card-header-a">
                   <h2 class="card-title-a">
-                    <a href="#">205 Sarabia
-                      <br /> Clásico</a>
+                    <a href="#"><?php echo $inmueble->identificador.'<br>'.$inmueble->nombre_inmueble?> 
+                    </a>
                   </h2>
                 </div>
                 <div class="card-body-a">
                   <div class="price-box d-flex">
-                    <span class="price-a">Renta | S/ 12.000</span>
+                    <span class="price-a"><?php echo $inmueble->nombre_t_operacion.'  |  '.$inmueble->precio?> </span>
                   </div>
                   <a href="property-single.html" class="link-a">Haga clic aquí para ver
                     <span class="ion-ios-arrow-forward"></span>
@@ -193,21 +418,21 @@ if(!isset($_SESSION['name'])){
                   <ul class="card-info d-flex justify-content-around">
                     <li>
                       <h4 class="card-info-title">Area</h4>
-                      <span>340m
+                      <span><?php echo $inmueble->superficie ?>m
                         <sup>2</sup>
                       </span>
                     </li>
                     <li>
                       <h4 class="card-info-title">Camas</h4>
-                      <span>2</span>
+                      <span><?php echo $inmueble->habitaciones ?></span>
                     </li>
                     <li>
                       <h4 class="card-info-title">Baños</h4>
-                      <span>4</span>
+                      <span><?php echo $inmueble->baño ?></span>
                     </li>
                     <li>
                       <h4 class="card-info-title">Garajes</h4>
-                      <span>1</span>
+                      <span><?php echo $inmueble->cochera ?></span>
                     </li>
                   </ul>
                 </div>
@@ -215,241 +440,9 @@ if(!isset($_SESSION['name'])){
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-              <img src="img/property-3.jpg" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-              <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                  <h2 class="card-title-a">
-                    <a href="#">206 Arabia
-                      <br /> Saudita</a>
-                  </h2>
-                </div>
-                <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Renta | S/ 12.000</span>
-                  </div>
-                  <a href="property-single.html" class="link-a">Haga clic aquí para ver
-                    <span class="ion-ios-arrow-forward"></span>
-                  </a>
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Area</h4>
-                      <span>340m
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Camas</h4>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Baños</h4>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Garajes</h4>
-                      <span>1</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-              <img src="img/property-6.jpg" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-              <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                  <h2 class="card-title-a">
-                    <a href="#">200 Greco
-                      <br /> Romano</a>
-                  </h2>
-                </div>
-                <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Renta | S/ 12.000</span>
-                  </div>
-                  <a href="property-single.html" class="link-a">Haga clic aquí para ver
-                    <span class="ion-ios-arrow-forward"></span>
-                  </a>
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Area</h4>
-                      <span>340m
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Camas</h4>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Baños</h4>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Garajes</h4>
-                      <span>1</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-              <img src="img/property-7.jpg" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-              <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                  <h2 class="card-title-a">
-                    <a href="#">207 Sandoval
-                      <br /> Parque</a>
-                  </h2>
-                </div>
-                <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Renta | S/ 12.000</span>
-                  </div>
-                  <a href="property-single.html" class="link-a">Haga clic aquí para ver
-                    <span class="ion-ios-arrow-forward"></span>
-                  </a>
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Area</h4>
-                      <span>340m
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Camas</h4>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Baños</h4>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Garajes</h4>
-                      <span>1</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-              <img src="img/property-8.jpg" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-              <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                  <h2 class="card-title-a">
-                    <a href="#">201 Selva
-                      <br /> Negra</a>
-                  </h2>
-                </div>
-                <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Renta | S/ 12.000</span>
-                  </div>
-                  <a href="property-single.html" class="link-a">Haga clic aquí para ver
-                    <span class="ion-ios-arrow-forward"></span>
-                  </a>
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Area</h4>
-                      <span>340m
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Camas</h4>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Baños</h4>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Garajes</h4>
-                      <span>1</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card-box-a card-shadow">
-            <div class="img-box-a">
-              <img src="img/property-10.jpg" alt="" class="img-a img-fluid">
-            </div>
-            <div class="card-overlay">
-              <div class="card-overlay-a-content">
-                <div class="card-header-a">
-                  <h2 class="card-title-a">
-                    <a href="#">204 Real
-                      <br /> Encino</a>
-                  </h2>
-                </div>
-                <div class="card-body-a">
-                  <div class="price-box d-flex">
-                    <span class="price-a">Renta | S/ 12.000</span>
-                  </div>
-                  <a href="property-single.html" class="link-a">Haga clic aquí para ver
-                    <span class="ion-ios-arrow-forward"></span>
-                  </a>
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Area</h4>
-                      <span>340m
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Camas</h4>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Baños</h4>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Garajes</h4>
-                      <span>1</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        
+         <?php  endforeach; ?>
+      
       </div>
       <div class="row">
         <div class="col-sm-12">
@@ -460,15 +453,17 @@ if(!isset($_SESSION['name'])){
                   <span class="ion-ios-arrow-back"></span>
                 </a>
               </li>
+              <?php 
+                $page=$obj->countRegister();
+                $page=ceil(($page->total)/6);
+                for($i=0;$i<$page;$i++){            
+              ?>
+
               <li class="page-item">
-                <a class="page-link" href="#">1</a>
+                <a class="page-link" href="controllers/controllerAdministrador.php?action=limitProperty&paginas=<?php echo $i+1; ?>"><?php echo $i+1; ?></a>
               </li>
-              <li class="page-item active">
-                <a class="page-link" href="#">2</a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">3</a>
-              </li>
+                <?php } ?>
+
               <li class="page-item next">
                 <a class="page-link" href="#">
                   <span class="ion-ios-arrow-forward"></span>
@@ -508,236 +503,6 @@ if(!isset($_SESSION['name'])){
 </html>
 
 
-
-
-<table class="table table-hover table-bordered mt-3">
-        <thead class="bg-dark text-white">
-          <tr>
-            <th>Dni</th>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Dirección</th>
-            <th>Correo</th>
-            <th>Estado</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody id="myTable" class="bg-secondary text-white">
-            <!-- contenido DOCENTE API -->
-                <?php
-                  $rs=$obj->listUsers();
-                  foreach($rs as $cliente):
-                ?>
-                <tr>
-                    <td><?php echo $cliente->dni; ?></td>
-                    <td><?php echo $cliente->first_name; ?></td>
-                    <td><?php echo $cliente->last_name ; ?></td>
-                    <td><?php echo $cliente->adress; ?></td>
-                    <td><?php echo $cliente->email; ?></td>
-                    <td><?php echo ($cliente->is_active=='1')?'activo':'inactivo'; ?></td>
-
-                    <!--<--?php echo '<td><a href="'.htmlspecialchars("controllers/controllerAdministrador.php?action=eliminarCliente&idPeople=".urlencode($cliente->id_people)).'">delete</a>'; ?>-->
-                    <td>
-                    <a class="btn btn-info" onclick="document.getElementById('id01').style.display='block'"  >
-                      <img src="assets/icon/administrador/editar.png" class="p-0" style="width: 40px;" >
-                    </a>
-
-                    <!--<a class="<--?php echo "delete";?>"value="<--?php echo $cliente->id_people;?>" style="width:auto; height:3rem; " >
-                      <img src="assets/icon/administrador/eliminar.png" class="p-0" style="width: 40px;" >
-                    </a>
-                    
-                    Boton para eiminar un cliente
-                    -->
-                    
-                    <button class="<?php echo "delete";?>"value="<?php echo $cliente->id_people;?>" style="width:auto; height:auto; ">
-                      <img src="assets/icon/administrador/eliminar.png"  style="width:28px; " alt="Elimanar">
-                    </button>
-                   <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; height:3rem; ">Info</button>-->
-                    
-                    <div id="id01" class="modal">
-                        
-                    <div class="row" style="margin-top:8rem; margin-botton:4rem;">
-                    <div class="col-md-3"></div>    
-
-                              <div class="col-md-6 pr-5 pl-5 " style="background: #ffff ; border-radius:0.70rem;">
-                                  <!--order-md-1-->
-                                <h4 class="mb-3 pt-5 text-primary">Información del Cliente</h4>
-                                <form class="needs-validation"  novalidate action="#">
-                                  <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                      <label class="text-primary" for="firstName">Dni</label>
-                                      <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                                      <div class="invalid-feedback">
-                                        Valid first name is required.
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label class="text-primary "for="firstName">Nombre</label>
-                                      <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-                                      <div class="invalid-feedback">
-                                        Valid first name is required.
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label class="text-primary " for="lastName">Apellido</label>
-                                      <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                      <div class="invalid-feedback">
-                                        Valid last name is required.
-                                      </div>
-                                    </div>
-                                    
-                                    <div class="col-md-6 mb-3">
-                                      <label class="text-primary" for="lastName">Teléfono</label>
-                                      <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                                      <div class="invalid-feedback">
-                                        Valid last name is required.
-                                      </div>
-                                    </div>
-                                    
-
-                                    <div class="col-md-6 mb-3">
-                                    <label class="text-primary" >Sexo</label>
-                                    <div class="custom-control custom-radio">
-                                      <input value="1" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                      <label class="custom-control-label text-primary" for="credit">Masculino</label>
-                                    </div>
-                                    <div class="custom-control custom-radio">
-                                      <input value="0" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                      <label class="custom-control-label text-primary" for="debit">Femenino</label>
-                                    </div>
-                                    
-                                  </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label class="text-primary" for="lastName">N° Ruc</label>
-                                      <input type="text" class="form-control " id="lastName" placeholder="" value="" required>
-                                      <div class="invalid-feedback">
-                                        Valid last name is required.
-                                      </div>
-                                    </div>
-
-
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="text-primary" for="address">Dirección</label>
-                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                                    <div class="invalid-feedback">
-                                      Please enter your shipping address.
-                                    </div>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="text-primary" for="address">Fecha de Nacimiento</label>
-                                    <input type="date" class="form-control" id="address" placeholder="1234 Main St" required>
-                                    <div class="invalid-feedback">
-                                      Please enter your shipping address.
-                                    </div>
-                                  </div>
-
-                                  <div class="mb-3">
-                                    <label class="text-primary" for="email">Email <span class="text-muted">(Optional)</span></label>
-                                    <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                                    <div class="invalid-feedback">
-                                      Please enter a valid email address for shipping updates.
-                                    </div>
-                                  </div>
-
-                                  <div class="mb-3">
-                                    <label class="text-primary" for="username">Usuario</label>
-                                    <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text">@</span>
-                                      </div>
-                                      <input type="text" class="form-control" id="username" placeholder="Username" required>
-                                      <div class="invalid-feedback" style="width: 100%;">
-                                        Your username is required.
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="mb-3">
-                                    <label class="text-primary" for="username">Contraseña</label>
-                                    <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text">@</span>
-                                      </div>
-                                      <input type="text" class="form-control" id="username" placeholder="Username" required>
-                                      <div class="invalid-feedback" style="width: 100%;">
-                                        Your username is required.
-                                      </div>
-                                    </div>
-                                  </div>
-
-
-                                  <div class="row">
-                                    <div class="col-md-5 mb-3">
-                                      <label class="text-primary" for="country">Estado </label>
-                                      <select class="custom-select d-block w-100" id="country" required>
-                                        <option value="" disabled >Seleccione...</option>
-                                        <option>Vigente</option>
-                                        <option>Retirado</option>
-                                      </select>
-                                      <div class="invalid-feedback">
-                                        Please select a valid country.
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4 mb-3">
-                                      <label class="text-primary " for="state">Tipo de Usuario</label>
-                                      <select class="custom-select d-block w-100" id="state" required>
-                                        <option value="" disabled>Seleccione...</option>
-                                        <option>Cliente</option>
-                                        <option>Empleado</option>
-                                        <option>Administrador</option>
-
-                                      </select>
-                                      <div class="invalid-feedback">
-                                        Please provide a valid state.
-                                      </div>
-                                    </div>
-                                    <div class="col-md-3 mb-3">
-                                      <label class="text-primary" for="zip">Logueado</label>
-                                      <input type="text" class="form-control" id="zip" placeholder="" required>
-                                      <div class="invalid-feedback">
-                                        Zip code required.
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <hr class="mb-4">
-                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="same-address">
-                                    <label    class="custom-control-label text-primary" for="same-address">Shipping address is the same as my billing address</label>
-                                  </div>
-                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="save-info">
-                                    <label class="custom-control-label text-primary" for="save-info">Save this information for next time</label>
-                                  </div>
-                                  <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">actualizar</button>
-                                  <div class="container" style="background-color:#f1f1f1">
-                                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" >Cancel</button>
-                                    <span class="psw">Forgot <a href="#">password?</a></span>
-                                  </div>
-                              </div>
-                            
-
-                              <div class="col-md-3"></div>  
-                          </div>
-                         
-                        </form>
-                    </div>
-                    <!--<--?php echo '<a href="'.htmlspecialchars("controllers/controllerAdministrador.php?action=infoCliente&idPeople=".urlencode($cliente->id_people)).'">info</a>--></td><!--'; ?>-->
-                    
-                </tr>
-                  <?php
-                  endforeach;
-                  ?>
-        </tbody>
-      </table>
-  </div>
-
-  <ul id="table-pagination-global" class="pagination">
-    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-
-</div>
 
 
 

@@ -35,106 +35,109 @@ $obj= new administrador();
 
 
 <!---------------------------- navergador principal pantalla grande---------------------------------------------------------------->
-    <nav class="navbar d-none d-sm-none d-lg-flex navbar-expand-lg bg-dark navbar-dark fixed-top " style=" width: 100%;">
-        <a class="navbar-brand dropdown dropdown-toggle mr-3" href="navbardrop" id="navbardrop" data-toggle="dropdown">
-             <?php
+<nav class="navbar d-none d-sm-none d-lg-flex navbar-expand-lg bg-dark navbar-dark fixed-top " style=" width: 100%;">
+    <a class="navbar-brand dropdown dropdown-toggle mr-3" href="navbardrop" id="navbardrop" data-toggle="dropdown">
+           <?php
               
-              $rs=$obj->getPhoto($_SESSION['id']);
+              $foto=$obj->getPhoto($_SESSION['id']);
               
-            if($rs->from_url ){ ?>
-                <img src="img-uploaded/<?php echo $rs->from_url;?>" alt="img_de admin" style="width:40px;height:40px; border-radius:55%;">
+            if($foto->from_url ){ ?>
+                <img src="img-uploaded/<?php echo $foto->from_url;?>" alt="img_de admin" style="width:40px;height:40px; border-radius:55%;">
             <?php } else { ?>
                 <img src="assets/img/administrador/admin3.jpg" alt="" style="width:40px; height:40px; border-radius:55%;">  
             <?php } ?>
-        </a>
-            <div class="dropdown-menu bg-dark"> 
-              <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
-              <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
-              <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
-            </div>
-        <ul class="navbar-nav ">
-            <!--<li class="nav-item">
-              <a id="inicio" class="nav-link" href="?a=inicio">INICIO</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="?a=cursos">Inmuebles</a>
-            </li>
-            -->
-            <li class="nav-item">
-              <a id="inicio" class="nav-link" href="administrador.php">INICIO</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Inmuebles
-              </a>
-            <div class="dropdown-menu bg-dark">
-              <a class="dropdown-item text-primary" href="propiedad-cliente.php">Propias</a>
-              <a class="dropdown-item text-primary" href="#">Clientes</a>
-            </div>
-            </li>
-    <!-- Dropdown -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Usuarios
-              </a>
-              <div class="dropdown-menu bg-dark">
-                <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
-                <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
-                <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
-              </div>
-            </li>
-        </ul>
-        <a href="administrador.php">
-        <img src="assets/img/principal/logoin.svg" rel="icon" style="padding-left:1500px; width:93%"  position alt="">
-      </a>
-    </nav> 
+    </a>
+        <div class="dropdown-menu bg-dark"> 
+          <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
+          <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
+        </div>
+    <ul class="navbar-nav ">
+        <!--<li class="nav-item">
+          <a id="inicio" class="nav-link" href="?a=inicio">INICIO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="?a=cursos">Inmuebles</a>
+        </li>
+        -->
+        <li class="nav-item">
+          <a id="inicio" class="nav-link" href="administrador.php">INICIO</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Inmuebles
+          </a>
+        <div class="dropdown-menu bg-dark">
+          <a class="dropdown-item text-primary" href="propiedad-cliente.php">Propias</a>
+          <a class="dropdown-item text-primary" href="#">Clientes</a>
+        </div>
+        </li>
+<!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Usuarios
+          </a>
+        <div class="dropdown-menu bg-dark">
+          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
+        </div>
+        </li>
+    </ul>
+    <a href="administrador.php">
+      <img src="assets/img/principal/logoin.svg" rel="icon" style="padding-left:1500px; width:93%"  position alt="">
+    </a>
+</nav> 
 
-    <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top">
-        <a class="navbar-brand" href="#">Administrador</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="administrador.php">Inicio</a>
-              <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Inmuebles
-              </a>
-            <div class="dropdown-menu bg-dark">
-              <a class="dropdown-item text-primary" href="?a=pageDocente">Propias</a>
-              <a class="dropdown-item text-primary" href="?a">Clientes</a>
-            </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                  Usuarios
-              </a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Empleados</a>
-                <a class="dropdown-item" href="admin-tabla-clientes.php">Clientes</a>
-                <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Administradores</a>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="?a=perfil">Perfil</a>
-                <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
-              </div>
-            </li>      
-          </ul>
-        </div>  
-    </nav>
+ <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top">
+    <a class="navbar-brand" href="#">Administrador</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="?a=inicio">Inicio</a>
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Inmuebles
+          </a>
+        <div class="dropdown-menu bg-dark">
+          <a class="dropdown-item text-primary" href="?a=pageDocente">Propias</a>
+          <a class="dropdown-item text-primary" href="?a">Clientes</a>
+        </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+              Usuarios
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Empleados</a>
+            <a class="dropdown-item" href="admin-tabla-clientes.php">Clientes</a>
+            <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Administradores</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="?a=perfil">Perfil</a>
+            <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
+          </div>
+        </li>      
+      </ul>
+    </div>  
+    <a href="administrador.php">
+      <img src="assets/img/principal/logoin.svg" rel="icon" style="padding-left:1500px; width:93%"  position alt="">
+    </a>
+</nav>
 
 
     <!-- Interfas deAgregar Cliente-->
     
     <div class="container-fluid" style="margin-top:100px;">
       <div class="">
-        <h2>Mis Clientes</h2>
+        <h2>Administradores</h2>
         <div class="row">
         
           <div class="col-9">
@@ -154,7 +157,7 @@ $obj= new administrador();
             <!--order-md-1-->
             
           
-          <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=cliente" method="post" enctype="multipart/form-data"  novalidate >
+          <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=admin" method="post" enctype="multipart/form-data"  novalidate >
             
             <div class="imgcontainer">
               <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -163,7 +166,7 @@ $obj= new administrador();
             <div style="margin-left:39%;" >
                 <input type="file" name="archivo" >
             </div>
-            <h4 class="mb-3 pt-5">Información del Cliente</h4>
+            <h4 class="mb-3 pt-5">Agrega un Nuevo Administrador</h4>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">Dni</label>
@@ -208,13 +211,29 @@ $obj= new administrador();
               </label>
               
             </div>
+
               <div class="col-md-6 mb-3">
-                <label for="lastName">N° Ruc</label>
-                <input type="text" class="form-control" name="ruc" placeholder="" value="" required>
+                <label for="lastName">Salario</label>
+                <input type="number" class="form-control" name="salary" placeholder="" value="<?php echo $c->salary; ?>" required>
                 <div class="invalid-feedback">
                   Valid last name is required.
                 </div>
               </div>
+
+                 <div class="col-md-6 mb-3">
+                     <label for="lastName">Fecha de Entrada</label>
+                     <input type="date" class="form-control" name="date_in" placeholder="" value="<?php echo $c->date_in; ?>" required>
+                     <div class="invalid-feedback">
+                     Valid last name is required.
+                     </div>
+                 </div>
+                 <div class="col-md-6 mb-3">
+                     <label for="lastName">Fecha de Salida</label>
+                     <input type="date" class="form-control" name="date_out" placeholder="" value="<?php echo $c->date_out; ?>" required>
+                     <div class="invalid-feedback">
+                     Valid last name is required.
+                     </div>
+                 </div>
 
 
             </div>
@@ -345,38 +364,38 @@ $obj= new administrador();
         <tbody  class="bg-secondary text-white">
             <!-- contenido id="myTable" DOCENTE API -->
                 <?php
-                  $rs=$obj->listUsers();
-                  foreach($rs as $cliente):
+                  $rs=$obj->listUsersAdmin();
+                  foreach($rs as $admin):
                 ?>
                 <tr>
-                    <td><?php echo $cliente->dni; ?></td>
-                    <td><?php echo $cliente->first_name; ?></td>
-                    <td><?php echo $cliente->last_name ; ?></td>
-                    <td><?php echo $cliente->adress; ?></td>
-                    <td><?php echo $cliente->email; ?></td>
-                    <td><?php echo ($cliente->is_active=='1')?'activo':'inactivo'; ?></td>
+                    <td><?php echo $admin->dni; ?></td>
+                    <td><?php echo $admin->first_name; ?></td>
+                    <td><?php echo $admin->last_name ; ?></td>
+                    <td><?php echo $admin->adress; ?></td>
+                    <td><?php echo $admin->email; ?></td>
+                    <td><?php echo ($admin->is_active=='1')?'activo':'inactivo'; ?></td>
 
-                    <!--<--?php echo '<td><a href="'.htmlspecialchars("controllers/controllerAdministrador.php?action=eliminarCliente&idPeople=".urlencode($cliente->id_people)).'">delete</a>'; ?>-->
+                    <!--<--?php echo '<td><a href="'.htmlspecialchars("controllers/controllerAdministrador.php?action=eliminaradmin&idPeople=".urlencode($admin->id_people)).'">delete</a>'; ?>-->
                     <td>
-                        <a class="btn btn-info" onclick="document.getElementById('<?php echo $cliente->id_people;?>').style.display='block'"  >
+                        <a class="btn btn-info" onclick="document.getElementById('<?php echo $admin->id_people;?>').style.display='block'"  >
                           <img src="assets/icon/administrador/editar.png" class="p-0" style="width: 40px;" >
                         </a>
 
-                        <!--<a class="<--?php echo "delete";?>"value="<--?php echo $cliente->id_people;?>" style="width:auto; height:3rem; " >
+                        <!--<a class="<--?php echo "delete";?>"value="<--?php echo $admin->id_people;?>" style="width:auto; height:3rem; " >
                           <img src="assets/icon/administrador/eliminar.png" class="p-0" style="width: 40px;" >
                         </a>
                         
-                        Boton para eiminar un cliente
+                        Boton para eiminar un admin
                         -->
                         
-                        <button class="<?php echo "delete";?>"value="<?php echo $cliente->id_people;?>" style="width:auto; height:auto; ">
+                        <button class="<?php echo "delete";?>"value="<?php echo $admin->id_people;?>" style="width:auto; height:auto; ">
                           
                           <img src="assets/icon/administrador/eliminar.png"  style="width:28px; " alt="Elimanar">
                         </button>
                       <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; height:3rem; ">Info</button>-->
                         
                         
-                        <!--<--?php echo '<a href="'.htmlspecialchars("controllers/controllerAdministrador.php?action=infoCliente&idPeople=".urlencode($cliente->id_people)).'">info</a>--></td><!--'; ?>-->
+                        <!--<--?php echo '<a href="'.htmlspecialchars("controllers/controllerAdministrador.php?action=infoadmin&idPeople=".urlencode($admin->id_people)).'">info</a>--></td><!--'; ?>-->
                     
                 </tr>
           
@@ -408,7 +427,7 @@ $obj= new administrador();
     
      <!-- Este es el contenido del boton modificar-->
 <?php
-$users=$obj->getUsers();
+$users=$obj->getUsersAdmin();
 foreach($users as $c):
 ?>
                    <div id="<?php echo $c->id_people; ?>" class="modal">
@@ -419,8 +438,8 @@ foreach($users as $c):
                           <div class="col-md-6 pr-5 pl-5 " style="background: #ffff ; border-radius:0.70rem;">
                                       <!--order-md-1-->
                                       
-                                <form class="needs-validation"  action="controllers/controllerAdministrador.php?tipo=cliente&id=<?php echo $c->id_people; ?>" method="post" enctype="multipart/form-data"  novalidate>
-                                       <div class="imgcontainer">
+                                <form class="needs-validation"  action="controllers/controllerAdministrador.php?tipo=admin&id=<?php echo $c->id_people; ?>" method="post" enctype="multipart/form-data"  novalidate>
+                                      <div class="imgcontainer">
                                         <span onclick="document.getElementById('<?php echo $c->id_people; ?>').style.display='none'" class="close" title="Close Modal">&times;</span>
                                         <?php if($c->from_url){?>
                                         <img src="img-uploaded/<?php echo $c->from_url; ?>"  style="width:200px; height:200px;"  alt="Avatar" class="avatar">
@@ -431,7 +450,7 @@ foreach($users as $c):
                                       <div style="margin-left:39%;" >
                                          <input type="file" name="archivo" >
                                       </div>
-                                    <h4 class="mb-3 pt-5 text-primary">Información del Cliente</h4>
+                                    <h4 class="mb-3 pt-5 text-primary">Información del Administrador</h4>
                                       <div class="row">
                                         <div class="col-md-6 mb-3">
                                           <label class="text-primary" for="firstName" >Dni</label>
@@ -499,14 +518,28 @@ foreach($users as $c):
                                         
                                         
                                       </div>
-                                        <div class="col-md-6 mb-3">
-                                          <label class="text-primary" for="lastName">N° Ruc</label>
-                                          <input type="text" class="form-control " name="ruc_client" placeholder="" value="<?php echo $c->ruc_client; ?>" required>
-                                          <div class="invalid-feedback">
+                                      <div class="col-md-6 mb-3">
+                                            <label for="lastName">Salario</label>
+                                            <input type="number" class="form-control" name="salary" placeholder="" value="<?php echo $c->salary; ?>" required>
+                                            <div class="invalid-feedback">
                                             Valid last name is required.
-                                          </div>
+                                            </div>
                                         </div>
-    
+
+                                        <div class="col-md-6 mb-3">
+                                            <label for="lastName">Fecha de Entrada</label>
+                                            <input type="date" class="form-control" name="date_in" placeholder="" value="<?php echo $c->date_in; ?>" required>
+                                            <div class="invalid-feedback">
+                                            Valid last name is required.
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="lastName">Fecha de Salida</label>
+                                            <input type="date" class="form-control" name="date_out" placeholder="" value="<?php echo $c->date_out; ?>" required>
+                                            <div class="invalid-feedback">
+                                            Valid last name is required.
+                                            </div>
+                                        </div>
     
                                       </div>
                                       <div class="mb-3">
@@ -586,9 +619,10 @@ foreach($users as $c):
                                           <label class="text-primary " for="state">Tipo de Usuario</label>
                                           <select class="custom-select d-block w-100" name="is_user" value="<?php echo $c->is_user; ?>" required>
                                             <option value="" disabled>Seleccione...</option>
-                                            <option>Cliente</option>
-                                            <option>Empleado</option>
                                             <option>Administrador</option>
+                                            <option>Empleado</option>
+                                            <option>Cliente</option>
+                                            
     
                                           </select>
                                           <div class="invalid-feedback">
@@ -628,83 +662,6 @@ foreach($users as $c):
 
      <!-- Aqui termina el botton modificar-->
 
-
-
-<!-- PINRT THE MODAL FOR VIEW TABLE BY BUTTON -->
-<!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Informacion Personal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!- desde aqui comienza el formulario ->
-
-        <div class="container">
-          <form id="formulario-info-update">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputNombres">Nombres</label>
-              <input type="text" class="form-control" id="inputNombres" placeholder="Nombres">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputApellidos">Apellidos</label>
-              <input type="text" class="form-control" id="inputApellidos" placeholder="Apellidos">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputEmail">Email</label>
-              <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword">Password</label>
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputContacto">Contacto</label>
-            <input type="text" class="form-control" id="inputContacto" placeholder="telefono o celular">
-          </div>
-          <div class="form-group">
-            <label for="inputDomicilio">Domicilio</label>
-            <input type="text" class="form-control" id="inputDomicilio" placeholder="Jr ejemplo 888">
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputCity">City</label>
-              <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputState">Sexo</label>
-              <select id="inputState" class="form-control">
-                <option selected>Opcion</option>
-                <option>Masculino</option>
-                <option>Femenino</option>
-              </select>
-            </div>
-            <div class="form-group col-md-2">
-              <label for="inputZip">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
-            </div>
-          </div>
-          
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-        </div>
-
-        <!- aqui teermina el formulario ->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div--> 
 
 
 <script src="lib/bootstrap/js/popper.min.js"></script>

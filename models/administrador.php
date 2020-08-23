@@ -39,7 +39,24 @@ class administrador{
         $rs=$this->con->prepare($sql);
         $rs->execute(array($logueado,$dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$active,$logueado,3,$ruta));
     }
+   /** new PEOPLE OF TYPE EMPLOYEE */
+   public function createPeopleE($dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$ruta){
+        $active=1;
+        $logueado=0;
+        $var=null;
 
+        $sql="INSERT INTO people VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($logueado,$dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$active,$logueado,2,$ruta));
+    }public function createPeopleA($dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$ruta){
+        $active=1;
+        $logueado=0;
+        $var=null;
+
+        $sql="INSERT INTO people VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($logueado,$dni,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$active,$logueado,1,$ruta));
+    }
 
     public function updatePeople($id_people,$nombre,$apellido,$dir,$cel,$email,$sex,$fechNac,$user,$pass,$active,$is_user,$ruta){
         $sql="UPDATE people SET first_name=?,last_name =?,adress=?,phone =?,email =?,sexo =?,date_birthday=?,user_name=?,pass=?,is_active=?,is_user=?,from_url=? WHERE id_people=? ";
@@ -126,7 +143,7 @@ class administrador{
     /*CRUD <EMPLOYEE>*/
 
 
-      public function listUsersEmployee(){
+    public function listUsersEmployee(){
         $sql="SELECT id_people,dni,first_name,last_name,adress,email,is_active FROM people WHERE is_user=2";
         $rs=$this->con->prepare($sql);
         $rs->execute();
@@ -139,18 +156,17 @@ class administrador{
         return $rs->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function createEmployee($dni){
+    public function createEmployee($dni,$salary,$date_in,$date_out){
         $idPeople=$this->getIdPeople($dni);
         /**param::::
          * 1->null auto increment
          */
 
         $var=0; // var autoincrement
-        $ruc="";
-        $idClient=$this->generateIdEmployee();
-        $sql="INSERT INTO  employee VALUES(?,?,?,?)";
+        $idEmployee=$this->generateIdEmployee();
+        $sql="INSERT INTO employee  VALUES(?,?,?,?,?,?)";
         $rs=$this->con->prepare($sql);
-        $rs->execute(array($var,$idClient->id,$idPeople->id_people,$ruc));
+        $rs->execute(array($var,$idEmployee->id,$idPeople->id_people,$salary,$date_in,$date_out));
     }
     private function generateIdEmployee(){
 
@@ -159,6 +175,135 @@ class administrador{
         $rs->execute();
         return $rs->fetch(PDO::FETCH_OBJ);
     }
+     public function eliminarEmpleado($idPeople){
+        $sql="DELETE FROM employee WHERE id_people=? ";
+        $rss=$this->con->prepare($sql);
+        $rss->execute(array($idPeople));
+        $sql="DELETE FROM people WHERE id_people=? ";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($idPeople));
+    }
+    public function updateEmployee($dni,$salary,$date_in,$date_out){
+        $idPeople=$this->getIdPeople($dni);
+     
+        $idClient=$this->generateIdEmployee();
+        $sql="UPDATE employee SET salary=?,date_in=?,date_out=? WHERE id_people =?";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($salary,$date_in,$date_out,$idPeople->id_people));
+    }
+
+    /** HERE GOING TO CREATE ADMINS */
+
+    /**CRUD FOR THE ADMINS */
+
+    public function listUsersAdmin(){
+        $sql="SELECT id_people,dni,first_name,last_name,adress,email,is_active FROM people WHERE is_user=1";
+        $rs=$this->con->prepare($sql);
+        $rs->execute();
+        return $rs->fetchAll(PDO::FETCH_OBJ);
+    }
+    public function getUsersAdmin(){
+        $sql="SELECT people.*,employee.salary,employee.date_in,employee.date_out FROM people,employee  WHERE people.id_people=employee.id_people AND  is_user=1";
+        $rs=$this->con->prepare($sql); 
+        $rs->execute();
+        return $rs->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function createAdmin($dni,$salary,$date_in,$date_out){
+        $idPeople=$this->getIdPeople($dni);
+        /**param::::
+         * 1->null auto increment
+         */
+
+        $var=0; // var autoincrement
+        $idAdmin=$this->generateIdAdmin();
+        $sql="INSERT INTO employee  VALUES(?,?,?,?,?,?)";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($var,$idAdmin->id,$idPeople->id_people,$salary,$date_in,$date_out));
+    }
+    private function generateIdAdmin(){
+
+        $sql="SELECT fnReturnId('4') AS id";
+        $rs=$this->con->prepare($sql);
+        $rs->execute();
+        return $rs->fetch(PDO::FETCH_OBJ);
+    }
+     public function eliminarAdmin($idPeople){
+        $sql="DELETE FROM employee WHERE id_people=? ";
+        $rss=$this->con->prepare($sql);
+        $rss->execute(array($idPeople));
+        $sql="DELETE FROM people WHERE id_people=? ";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($idPeople));
+    }
+    public function updateAdmin($dni,$salary,$date_in,$date_out){
+        $idPeople=$this->getIdPeople($dni);
+     
+        $idClient=$this->generateIdAdmin();
+        $sql="UPDATE employee SET salary=?,date_in=?,date_out=? WHERE id_people =?";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($salary,$date_in,$date_out,$idPeople->id_people));
+    }
+
+
+
+
+
+
+
+    /** CRUD INMUEBLE     */
+
+    public function listInmueble($var){
+        
+        $sql="SELECT a.identificador, a.nombre_inmueble ,e.nombre_t_inmueble ,d.nombre_distrito ,a.direccion ,a.numero ,a.superficie ,
+        a.habitaciones ,a.baño ,a.cochera ,a.descripcion ,a.precio ,a.from_url ,a.fecha ,a.tipo ,b.id_operacion ,b.id_people ,
+        c.nombre_t_operacion,f.id_contrato,f.identificador as id_contrato,g.tiempo ,f.contrato 
+        from inmueble as a inner join operacion as b on a.id_inmuebe=b.id_inmueble 
+        inner join tipo_operacion as c on b.tipo_operacion=c.id_t_operacion inner join distrito as d on a.id_distrito =d.id_distrito
+        inner join tipo_inmueble as e on a.tipo_inmueble=e.id_tipo_inmueble inner join contrato as f  on b.id_operacion=f.id_operacion
+        inner join tipo_contrato as g on f.id_t_contrato=g.id_t_contrato  where a.tipo =?";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($var));
+        return $rs->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
+    /** CREATE PAGINATION FOR PROPERTY */ 
+
+    public function countRegister(){
+        $sql="SELECT COUNT(id_inmuebe) AS total FROM inmueble where tipo=0 ";
+        $rs=$this->con->prepare($sql);
+        $rs->execute();
+        return $rs->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function list_limit($var,$page){
+        if($page>1){
+            $page=$page*6-6;
+        }else{
+            $page=0;
+        }
+        $sql="SELECT a.identificador, a.nombre_inmueble ,e.nombre_t_inmueble ,d.nombre_distrito ,a.direccion ,a.numero ,a.superficie ,
+        a.habitaciones ,a.baño ,a.cochera ,a.descripcion ,a.precio ,a.from_url ,a.fecha ,a.tipo ,b.id_operacion ,b.id_people ,
+        c.nombre_t_operacion,f.id_contrato,f.identificador as id_contrato,g.tiempo ,f.contrato 
+        from inmueble as a inner join operacion as b on a.id_inmuebe=b.id_inmueble 
+        inner join tipo_operacion as c on b.tipo_operacion=c.id_t_operacion inner join distrito as d on a.id_distrito =d.id_distrito
+        inner join tipo_inmueble as e on a.tipo_inmueble=e.id_tipo_inmueble inner join contrato as f  on b.id_operacion=f.id_operacion
+        inner join tipo_contrato as g on f.id_t_contrato=g.id_t_contrato  where a.tipo =?  limit $page,6";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($var));
+        return $rs->fetchAll(PDO::FETCH_OBJ);
+    }
+
+
+    /** CERRANDO SESSIONN  */
+    public function status_loguin_off($idPeople){
+        $sql="UPDATE people SET is_staff=0 WHERE id_people=?";
+        $rs=$this->con->prepare($sql);
+        $rs->execute(array($idPeople));
+    }
+
+
 
 
 

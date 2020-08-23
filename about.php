@@ -132,7 +132,9 @@
 
   <!--/ Nav Star /-->
   <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-  <img src="assets/img/principal/l.png" rel="icon" style=" margin=none; width:5.5%; "  position alt="">
+  <a href="index.php">
+    <img src="assets/img/principal/inmue.svg" rel="icon" style="padding-left:350px; width:90%"  position alt="">
+  </a>
     <div class="container">
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
         aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">

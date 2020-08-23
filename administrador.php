@@ -33,7 +33,16 @@ $obj=new administrador();
 <!---------------------------- navergador principal pantalla grande---------------------------------------------------------------->
 <nav class="navbar d-none d-sm-none d-lg-flex navbar-expand-lg bg-dark navbar-dark fixed-top " style=" width: 100%;">
     <a class="navbar-brand dropdown dropdown-toggle mr-3" href="navbardrop" id="navbardrop" data-toggle="dropdown">
-     <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">
+           <?php
+              
+              $rs=$obj->getPhoto($_SESSION['id']);
+              
+            if($rs->from_url ){ ?>
+                <img src="img-uploaded/<?php echo $rs->from_url;?>" alt="img_de admin" style="width:40px;height:40px; border-radius:55%;">
+            <?php } else { ?>
+                <img src="assets/img/administrador/admin3.jpg" alt="" style="width:40px; height:40px; border-radius:55%;">  
+            <?php } ?>
+          <!-- <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">-->
     </a>
         <div class="dropdown-menu bg-dark"> 
           <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
@@ -56,8 +65,8 @@ $obj=new administrador();
                 Inmuebles
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="propiedad-cliente.php">Propias</a>
-          <a class="dropdown-item text-primary" href="#">Clientes</a>
+          <a class="dropdown-item text-primary" href="propiedad-cliente.php?numeros=0">Clientes</a>
+          <a class="dropdown-item text-primary" href="#">Propias</a>
         </div>
         </li>
 <!-- Dropdown -->
@@ -66,16 +75,19 @@ $obj=new administrador();
                 Usuarios
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="?a=pageDocente">Empleados</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
           <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
-          <a class="dropdown-item text-primary" href="#">Administradores</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
         </div>
         </li>
     </ul>
+    <a href="administrador.php">
+      <img src="assets/img/principal/logoin.svg" rel="icon" style="padding-left:1500px; width:93%"  position alt="">
+    </a>
 </nav> 
 
  <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top" style="paddin-botton:20px;">
     <a class="navbar-brand" href="#">Administrador</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -117,7 +129,7 @@ $obj=new administrador();
 
 
 
-<div id="contenido-inicio" class="container-fluid  border " id="inicio" style="height: 100vh;">
+<div id="contenido-inicio" class="container-fluid  border " id="inicio" style="height: 100vh; padding-top:70px;" >
       <h1 class="text-center text-primary "style="padding-top: 80px;">Bienvenido <br>
 
       <?php 
@@ -135,11 +147,12 @@ $obj=new administrador();
           <h4 class="text-center">Le damos una cordial bienvenida al sistema de Inmobiliaria Ccopa !</h4><br>
           <br>
           <p class="text-center">
+          
             <?php
-              $rs=$obj->getPhoto($_SESSION['id']);
-              if($rs->from_url){ ?>
-                <img src="img-uploaded/<?php echo $rs->from_url;?>"alt="" style="width: 35%; border-radius:50%;">
-            <?php} else {?>
+             
+            if($rs->from_url ){ ?>
+                <img src="img-uploaded/<?php echo $rs->from_url;?>" alt="img_de admin" style="width: 300px; height:300px; border-radius:50%;">
+            <?php } else { ?>
                <img src="assets/img/administrador/admin3.jpg" alt="" style="width: 35%; border-radius:50%;">  
             <?php } ?>
            
