@@ -336,7 +336,7 @@ if(isset($_SERVER['REQUEST_METHOD'])){
         else if($_GET['action']=="limitProperty"){
             
             $pagina=$_GET['paginas'];
-            header("location:http://localhost/inmobiliaria/propiedad-cliente.php?numeros=$pagina");
+            header("location:http://localhost/inmobiliaria/beta-view.php?numeros=$pagina");
 
         }
 

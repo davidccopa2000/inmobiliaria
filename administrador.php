@@ -45,7 +45,7 @@ $obj=new administrador();
           <!-- <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">-->
     </a>
         <div class="dropdown-menu bg-dark"> 
-          <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
+          <a id="perfil" class="dropdown-item text-primary" href="perfil-admin.php">Perfil</a>
           <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
           <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
         </div>
@@ -118,7 +118,7 @@ $obj=new administrador();
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="?a=perfil">Perfil</a>
+            <a class="dropdown-item" href="perfil-admin.php">Perfil</a>
             <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
           </div>
         </li>      
