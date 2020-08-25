@@ -274,12 +274,12 @@ $obj=new administrador();
 
 
 <!-- menu perfil---------------------------------------------------- -->
-<div class="content-wrapper mb-1 m-t3" style="margin-top:140px;">
+<div class="content-wrapper mb-1 m-t1" style="margin-top:140px;">
 
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-3">
 
             <!-- Profile Image -->
             <div class="card card-primary card-outline">
@@ -311,8 +311,223 @@ $obj=new administrador();
                     <!-- rellenar datos del usuario API -->
                 </ul>
 
+                <!--HERE THA ESTRAR
+                  -->
+
+                  
+
                 <!-- HERE THE ESTART THE GET OF THE ADMIN PERFIL-->
+                <a class="btn btn-info" onclick="document.getElementById('id02').style.display='block'"  >
+              <img src="assets/icon/administrador/agregar.svg" class="p-0" style="width: 40px;" >
+          </a>
+          <div id="id02" class="modal" style="width:58%; ">
+
               
+            <div class="row" style="margin-top:0rem; margin-botton:0rem;">
+            <div class="col-md-3"></div>    
+
+            <div class="col-md-8 pr-4 pl-4 " style="background: #ffff ; border-radius:0.70rem;"  >
+            <!--order-md-1-->
+            
+          
+          <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=admin" method="post" enctype="multipart/form-data" style="position-size:0 0 0 0;" novalidate >
+            
+                      <div class="imgcontainer">
+                        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                      </div>
+                        <h4 class="mb-2 pt-0">MOdifica Este  Inmueble</h4>
+                        <div class="row" style="margin-top:40px;">
+                          <div class="col-md-5 mb-2 mt-1">
+                            <label for="firstName">Nombre del Inmueble</label>
+                            <input type="text" class="form-control" name="dni" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-2 mb-3">
+                            <label for="lastName">N°Habitaciones</label>
+                            <input type="text" class="form-control" name="apellido" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-2 mb-3">
+                            <label for="lastName">N° de Baños</label>
+                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-2  mb-2">
+                            <label for="lastName">N° de Garages</label>
+                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-2 mb-2">
+                            <label for="firstName">Superficie</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-2 mb-3">
+                            <label for="address">Precio</label>
+                            <input type="text" class="form-control" name="direccion" style="width:100px;"  required>
+                            <div class="invalid-feedback">
+                             Please enter your shipping address.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="address">Dirección</label>
+                            <input type="text" class="form-control" name="direccion" style="width:500px;" placeholder="1350 Main St" required>
+                            <div class="invalid-feedback">
+                             Please enter your shipping address.
+                            </div>
+                          </div>
+                          
+
+                         <!-- <div class="col-md-6 mb-3">
+                          <label >Sexo </label> <br>
+                          <label>Masculino 
+                          <input type="radio"  name="radio" value="1">
+                          <span class="checkmark"></span>
+                          </label><br>
+                          <label >Femenino
+                          <input type="radio" name="radio" value="0">
+                          <span class="checkmark"></span>
+                          </label>
+                          -->
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 mb-2" >
+                            <label for="country" >Tipo de Inmueble </label>
+                            <select class="custom-select d-block w-10"   name="country" required>
+                              <option value="" disabled >Seleccione...</option>
+                              <option>CASA</option>
+                              <option>DEPARTAMENTO</option>
+                            </select>
+                            <div class="invalid-feedback" >
+                              Please select a valid country.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Tipo de Operación </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>VENTA</option>
+                              <option>ALQUILER</option>
+                              <option>TRASPASO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Duración </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>12</option>
+                              <option>6</option>
+                              <option>3</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 mb-2" >
+                            <label for="country" >Departamento </label>
+                            <select class="custom-select d-block w-10"   name="country" required>
+                              <option value="" disabled >Seleccione...</option>
+                              <option>LIMA</option>
+                              <option>CUSCO</option>
+                            </select>
+                            <div class="invalid-feedback" >
+                              Please select a valid country.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Provincia </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>CUSCO</option>
+                              <option>LA CONVENCION</option>
+                              <option>ACOMAYO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">DIstrito </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>SAN JERONIMO</option>
+                              <option>SAN SEBASTIAN</option>
+                              <option>SANTIAGO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                        
+                        
+
+
+                        </div>
+                       
+
+                        
+                        <label for="email">Descripción <span class="text-muted">(Optional)</span></label>
+                        <div class="mb-3">
+                          
+                          <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:800px;"></textarea>
+                          <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                          </div>
+                        </div>
+
+                        <div class="row">
+                        
+                          <div class="text-center" style="padding-left:190px;">
+                            <?php if($c->from_url){?>
+                                <img class="profile-user-img img-fluid img-circle"
+                                  src="img-uploaded/<?php echo $c->from_url; ?>"
+                                  style="width:30%;">
+                            
+                            <?php }else{ ?>
+                                <img class="profile-user-img img-fluid img-circle"
+                                  src="assets/img/principal/img_avatar2.png"
+                                  style="width:300px; height:180px;">
+                            
+                            <?php } ?>
+                            <div style="margin:20px 0 20px 20px; " >
+                              <input type="file" name="archivo" >
+                          </div>
+                              
+                          </div>
+                        </div>
+            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Registrar</button>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" >Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-3"></div>  
+    </div>
+        
+          
+    </div>
             
                 <!-- HERE ENDIG¡NG THE INSERT THE ADMIN PERFIL -->
                 <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
@@ -377,9 +592,228 @@ $obj=new administrador();
                   <div class="price-box d-flex">
                     <span class="price-a"><?php echo $inmueble->nombre_t_operacion.'  |  '.$inmueble->precio?> </span>
                   </div>
-                  <a href="property-single.html" class="link-a">Haga clic aquí para ver
+                  <a href="#" class="link-a" onclick="document.getElementById('id02').style.display='block'" >Haga clic aquí para ver
                     <span class="ion-ios-arrow-forward"></span>
                   </a>
+
+
+                <!-- AAAH -->
+
+                <!--<a class="btn btn-info" onclick="document.getElementById('id02').style.display='block'"  >
+              <img src="assets/icon/administrador/agregar.svg" class="p-0" style="width: 40px;" >
+          </a>-->
+          <div id="id02" class="modal" style="width:58%; ">
+
+              
+            <div class="row" style="margin-top:0rem; margin-botton:0rem;">
+            <div class="col-md-3"></div>    
+
+            <div class="col-md-8 pr-4 pl-4 " style="background: #ffff ; border-radius:0.70rem;"  >
+            <!--order-md-1-->
+            
+          
+          <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=admin" method="post" enctype="multipart/form-data" style="position-size:0 0 0 0;" novalidate >
+            
+                      <div class="imgcontainer">
+                        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                      </div>
+                        <h4 class="mb-2 pt-0">MOdifica Este  Inmueble</h4>
+                        <div class="row" style="margin-top:40px;">
+                          <div class="col-md-5 mb-2 mt-1">
+                            <label for="firstName">Nombre del Inmueble</label>
+                            <input type="text" class="form-control" name="dni" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-2 mb-3">
+                            <label for="lastName">N°Habitaciones</label>
+                            <input type="text" class="form-control" name="apellido" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-2 mb-3">
+                            <label for="lastName">N° de Baños</label>
+                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-2  mb-2">
+                            <label for="lastName">N° de Garages</label>
+                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-2 mb-2">
+                            <label for="firstName">Superficie</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-2 mb-3">
+                            <label for="address">Precio</label>
+                            <input type="text" class="form-control" name="direccion" style="width:100px;"  required>
+                            <div class="invalid-feedback">
+                             Please enter your shipping address.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="address">Dirección</label>
+                            <input type="text" class="form-control" name="direccion" style="width:500px;" placeholder="1350 Main St" required>
+                            <div class="invalid-feedback">
+                             Please enter your shipping address.
+                            </div>
+                          </div>
+                          
+
+                         <!-- <div class="col-md-6 mb-3">
+                          <label >Sexo </label> <br>
+                          <label>Masculino 
+                          <input type="radio"  name="radio" value="1">
+                          <span class="checkmark"></span>
+                          </label><br>
+                          <label >Femenino
+                          <input type="radio" name="radio" value="0">
+                          <span class="checkmark"></span>
+                          </label>
+                          -->
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 mb-2" >
+                            <label for="country" >Tipo de Inmueble </label>
+                            <select class="custom-select d-block w-10"   name="country" required>
+                              <option value="" disabled >Seleccione...</option>
+                              <option>CASA</option>
+                              <option>DEPARTAMENTO</option>
+                            </select>
+                            <div class="invalid-feedback" >
+                              Please select a valid country.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Tipo de Operación </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>VENTA</option>
+                              <option>ALQUILER</option>
+                              <option>TRASPASO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Duración </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>12</option>
+                              <option>6</option>
+                              <option>3</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 mb-2" >
+                            <label for="country" >Departamento </label>
+                            <select class="custom-select d-block w-10"   name="country" required>
+                              <option value="" disabled >Seleccione...</option>
+                              <option>LIMA</option>
+                              <option>CUSCO</option>
+                            </select>
+                            <div class="invalid-feedback" >
+                              Please select a valid country.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Provincia </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>CUSCO</option>
+                              <option>LA CONVENCION</option>
+                              <option>ACOMAYO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">DIstrito </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>SAN JERONIMO</option>
+                              <option>SAN SEBASTIAN</option>
+                              <option>SANTIAGO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                        
+                        
+
+
+                        </div>
+                       
+
+                        
+                        <label for="email">Descripción <span class="text-muted">(Optional)</span></label>
+                        <div class="mb-3">
+                          
+                          <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:800px;"></textarea>
+                          <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                          </div>
+                        </div>
+
+                        <div class="row">
+                        
+                          <div class="text-center" style="padding-left:190px;">
+                            <?php if($c->from_url){?>
+                                <img class="profile-user-img img-fluid img-circle"
+                                  src="img-uploaded/<?php echo $c->from_url; ?>"
+                                  style="width:30%;">
+                            
+                            <?php }else{ ?>
+                                <img class="profile-user-img img-fluid img-circle"
+                                  src="assets/img/principal/img_avatar2.png"
+                                  style="width:300px; height:180px;">
+                            
+                            <?php } ?>
+                            <div style="margin:20px 0 20px 20px; " >
+                              <input type="file" name="archivo" >
+                          </div>
+                              
+                          </div>
+                        </div>
+            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Registrar</button>
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" >Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-3"></div>  
+    </div>
+        
+          
+    </div>
+
+              <!--  -->
+
+
                 </div>
                 <div class="card-footer-a">
                   <ul class="card-info d-flex justify-content-around">
@@ -444,6 +878,212 @@ $obj=new administrador();
   </section> 
                           </div>
                         </div>
+                  </div>
+
+
+
+                  <div class="tab-pane" id="settings">
+                  <form class="form-horizontal"  style="padding:0 85px 0 85px;" >
+                        <h4 class="mb-3 pt-5">Agrega un Nuevo Inmueble</h4>
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            <label for="firstName">Nombre del Inmueble</label>
+                            <input type="text" class="form-control" name="dni" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="firstName">Superficie</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="lastName">N° de Habitaciones</label>
+                            <input type="text" class="form-control" name="apellido" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-6 mb-3">
+                            <label for="lastName">N° de Baños</label>
+                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="lastName">N° de Garages</label>
+                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label for="lastName">Precio del Inmubele</label>
+                            <input type="number" class="form-control" name="salary" placeholder="" value="<?php echo $c->salary; ?>" required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          
+
+                         <!-- <div class="col-md-6 mb-3">
+                          <label >Sexo </label> <br>
+                          <label>Masculino 
+                          <input type="radio"  name="radio" value="1">
+                          <span class="checkmark"></span>
+                          </label><br>
+                          <label >Femenino
+                          <input type="radio" name="radio" value="0">
+                          <span class="checkmark"></span>
+                          </label>
+                          -->
+                        </div>
+                        <div class="row">
+                          <div class="col-md-4 mb-2" >
+                            <label for="country" >Tipo de Inmueble </label>
+                            <select class="custom-select d-block w-10"   name="country" required>
+                              <option value="" disabled >Seleccione...</option>
+                              <option>CASA</option>
+                              <option>DEPARTAMENTO</option>
+                            </select>
+                            <div class="invalid-feedback" >
+                              Please select a valid country.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Tipo de Operación </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>VENTA</option>
+                              <option>ALQUILER</option>
+                              <option>TRASPASO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">TIEMPO DE PUBLICIDAD enMESES </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>12</option>
+                              <option>6</option>
+                              <option>3</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+
+                          <div class="col-md-4 mb-2" >
+                            <label for="country" >Departamento </label>
+                            <select class="custom-select d-block w-10"   name="country" required>
+                              <option value="" disabled >Seleccione...</option>
+                              <option>LIMA</option>
+                              <option>CUSCO</option>
+                            </select>
+                            <div class="invalid-feedback" >
+                              Please select a valid country.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">Provincia </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>CUSCO</option>
+                              <option>LA CONVENCION</option>
+                              <option>ACOMAYO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-4 mb-3">
+                            <label for="state">DIstrito </label>
+                            <select class="custom-select d-block w-100" name="state" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>SAN JERONIMO</option>
+                              <option>SAN SEBASTIAN</option>
+                              <option>SANTIAGO</option>
+
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                        
+                        
+
+
+                        </div>
+                        <div class="mb-3">
+                          <label for="address">Dirección</label>
+                          <input type="text" class="form-control" name="direccion" placeholder="1350 Main St" required>
+                          <div class="invalid-feedback">
+                            Please enter your shipping address.
+                          </div>
+                        </div>
+
+                        
+                        <label for="email">Descripción <span class="text-muted">(Optional)</span></label>
+                        <div class="mb-5">
+                          
+                          <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:1180px;"></textarea>
+                          <div class="invalid-feedback">
+                            Please enter a valid email address for shipping updates.
+                          </div>
+                        </div>
+
+                        
+                        
+
+
+                        <div class="row">
+                          <div class="col-md-5 mb-3">
+                            <label for="country"> Inmueble de :. </label>
+                            <select class="custom-select d-block w-100" name="country" required>
+                              <option value="" disabled >Seleccione...</option>
+                              <option>Cliente</option>
+                              <option>Propiedad de la empresa</option>
+                            </select>
+                            <div class="invalid-feedback">
+                              Please select a valid country.
+                            </div>
+                          </div>
+                          <div class="text-center" style="padding-left:190px;">
+                            <?php if($c->from_url){?>
+                                <img class="profile-user-img img-fluid img-circle"
+                                  src="img-uploaded/<?php echo $c->from_url; ?>"
+                                  style="width:30%;">
+                            
+                            <?php }else{ ?>
+                                <img class="profile-user-img img-fluid img-circle"
+                                  src="assets/img/principal/img_avatar2.png"
+                                  style="width:300px; height:180px;">
+                            
+                            <?php } ?>
+                            <div style="margin:20px 0 20px 20px; " >
+                              <input type="file" name="archivo" >
+                          </div>
+                              
+                          </div>
+                        </div>
+                  
+                        
+                      <div class="form-group row" style="margin:0 100px 0 0;">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button id="infoAdicional" type="submit" class="btn btn-danger">Guardar</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
 
                   <!-- /.tab-pane -->
@@ -725,3 +1365,10 @@ $obj=new administrador();
 
 </body>
 </html>
+
+
+
+
+
+
+

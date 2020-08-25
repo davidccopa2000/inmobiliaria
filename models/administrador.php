@@ -287,9 +287,9 @@ class administrador{
         }else{
             $page=0;
         }
-        $sql="SELECT a.identificador, a.nombre_inmueble ,e.nombre_t_inmueble ,d.nombre_distrito ,a.direccion ,a.numero ,a.superficie ,
+        $sql="SELECT a.identificador, a.nombre_inmueble ,e.nombre_t_inmueble ,d.nombre_distrito ,a.direccion ,a.superficie ,
         a.habitaciones ,a.baño ,a.cochera ,a.descripcion ,a.precio ,a.from_url ,a.fecha ,a.tipo ,b.id_operacion ,b.id_people ,
-        c.nombre_t_operacion,f.id_contrato,f.identificador as id_contrato,g.tiempo ,f.contrato 
+        c.nombre_t_operacion,f.id_contrato,f.identificador as id_contrato,g.tiempo 
         from inmueble as a inner join operacion as b on a.id_inmuebe=b.id_inmueble 
         inner join tipo_operacion as c on b.tipo_operacion=c.id_t_operacion inner join distrito as d on a.id_distrito =d.id_distrito
         inner join tipo_inmueble as e on a.tipo_inmueble=e.id_tipo_inmueble inner join contrato as f  on b.id_operacion=f.id_operacion

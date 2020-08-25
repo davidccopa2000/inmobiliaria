@@ -341,6 +341,8 @@ $obj= new administrador();
         
           
     </div>
+
+    <!--end the form insert -->
   </div>
 </div>
   <div class="contanier" style="overflow:auto;">
@@ -668,7 +670,7 @@ foreach($users as $c):
 <script src="lib/bootstrap/js/jquery-3.2.1.slim.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="lib/sweetAlert2/sweetalert2.all.min.js"></script>
-<script src="assets/js/administrador/alert.js"></script>
+<script src="assets/js/administrador/alert-a.js"></script>
 <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;

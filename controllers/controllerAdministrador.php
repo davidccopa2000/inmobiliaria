@@ -306,12 +306,13 @@ if(isset($_SERVER['REQUEST_METHOD'])){
 
         }else if($_GET['action']=="eliminarEmpleado"){
             
-            $idPeople=$_GET['idPeople'];
+            echo "estamos dentro del controller eliminar client";
+            /**$idPeople=$_GET['idPeople'];
             $ctrl=true;
             require_once("../models/administrador.php");
             $obj= new administrador();
             $obj->eliminarEmpleado($idPeople);
-            header("location:http://localhost/inmobiliaria/admin-tabla-empleados.php");
+            header("location:http://localhost/inmobiliaria/admin-tabla-empleados.php");*/
 
         }
 

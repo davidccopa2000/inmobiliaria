@@ -1,4 +1,4 @@
-const eliminar=document.querySelectorAll('.delete');
+const eliminarC=document.querySelectorAll('.delete');
 
 /*const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -8,7 +8,7 @@ const eliminar=document.querySelectorAll('.delete');
     buttonsStyling: false
   })*/
  
-eliminar.forEach(function(e){
+eliminarC.forEach(function(e){
     e.addEventListener('click',()=>{
         //e.preventDefault();
 
@@ -46,7 +46,7 @@ eliminar.forEach(function(e){
 
 
 
-const eliminarE=document.querySelectorAll('.delete');
+/*const eliminarE=document.querySelectorAll('.delete');
 
 /*const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -54,7 +54,7 @@ const eliminarE=document.querySelectorAll('.delete');
       cancelButton: 'btn btn-danger'
     },
     buttonsStyling: false
-  })*/
+  })
  
 eliminarE.forEach(function(e){
     e.addEventListener('click',()=>{
@@ -101,7 +101,7 @@ const eliminarA=document.querySelectorAll('.delete');
       cancelButton: 'btn btn-danger'
     },
     buttonsStyling: false
-  })*/
+  })
  
 eliminarA.forEach(function(e){
     e.addEventListener('click',()=>{
@@ -137,6 +137,7 @@ eliminarA.forEach(function(e){
             }
           })
     })
-});
 
+});
+*/
 
