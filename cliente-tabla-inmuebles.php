@@ -7,11 +7,11 @@
 session_start();
 if(!isset($_SESSION['name'])){
     header("location:http://localhost/inmobiliaria/");
-}else if($_SESSION['rol']!='1'){
+}else if($_SESSION['rol']!='3'){
     header("location:http://localhost/inmobiliaria/");
 }
-require_once("models/administrador.php");
-$obj= new administrador();
+require_once("models/cliente.php");
+$obj= new cliente();
 ?>
 
 
@@ -48,9 +48,9 @@ $obj= new administrador();
             <?php } ?>
     </a>
         <div class="dropdown-menu bg-dark"> 
-          <a id="perfil" class="dropdown-item text-primary" href="perfil-admin.php">Perfil</a>
+          <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
           <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerCliente.php?action=salir">Salir</a>
         </div>
     <ul class="navbar-nav ">
         <!--<li class="nav-item">
@@ -61,7 +61,7 @@ $obj= new administrador();
         </li>
         -->
         <li class="nav-item">
-          <a id="inicio" class="nav-link" href="administrador.php">INICIO</a>
+          <a id="inicio" class="nav-link" href="cliente.php">INICIO</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -77,11 +77,11 @@ $obj= new administrador();
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Usuarios
           </a>
-          <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
+          <!--<div class="dropdown-menu bg-dark">
+            <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
             <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
-          </div>
+            <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
+          </div>-->
         </li>
     </ul>
     <a href="administrador.php">
@@ -91,14 +91,14 @@ $obj= new administrador();
 
  <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top">
-    <a class="navbar-brand" href="#">Administrador</a>
+    <a class="navbar-brand" href="#">Cliente</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="administrador.php">Inicio</a>
+          <a class="nav-link" href="cliente.php">Inicio</a>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
@@ -112,17 +112,17 @@ $obj= new administrador();
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
               Usuarios
           </a>
-          <div class="dropdown-menu">
+          <!--<div class="dropdown-menu">
             <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Empleados</a>
             <a class="dropdown-item" href="admin-tabla-clientes.php">Clientes</a>
             <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Administradores</a>
-          </div>
+          </div>-->
         </li>
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="perfil-admin.php">Perfil</a>
-            <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
+            <a class="dropdown-item" href="?a=perfil">Perfil</a>
+            <a class="dropdown-item" href="controllers/controllerCliente.php?action=salir">Exit</a>
           </div>
         </li>      
       </ul>
@@ -153,7 +153,7 @@ $obj= new administrador();
             <!--order-md-1-->
             
           
-          <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=empleado" method="post" enctype="multipart/form-data"  novalidate >
+          <form class="needs-validation" action="controllers/controllerCliente.php?tipo=empleado" method="post" enctype="multipart/form-data"  novalidate >
             
             <div class="imgcontainer">
               <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -298,8 +298,8 @@ $obj= new administrador();
                 <label for="state">Tipo de Usuario</label>
                 <select class="custom-select d-block w-100" name="state" required>
                   <option value="" disabled>Seleccione...</option>
-                  <option>Empleado</option>
                   <option>Cliente</option>
+                  <option>Empleado</option>
                   <option>Administrador</option>
 
                 </select>
@@ -434,7 +434,7 @@ foreach($users as $c):
                           <div class="col-md-6 pr-5 pl-5 " style="background: #ffff ; border-radius:0.70rem;">
                                       <!--order-md-1-->
                                       
-                                <form class="needs-validation"  action="controllers/controllerAdministrador.php?tipo=empleado&id=<?php echo $c->id_people; ?>" method="post" enctype="multipart/form-data"  novalidate>
+                                <form class="needs-validation"  action="controllers/controllerCliente.php?tipo=empleado&id=<?php echo $c->id_people; ?>" method="post" enctype="multipart/form-data"  novalidate>
                                       <div class="imgcontainer">
                                         <span onclick="document.getElementById('<?php echo $c->id_people; ?>').style.display='none'" class="close" title="Close Modal">&times;</span>
                                         <?php if($c->from_url){?>
@@ -656,6 +656,9 @@ foreach($users as $c):
 <?php endforeach;?>
 
      <!-- Aqui termina el botton modificar-->
+
+
+
 
 <script src="lib/bootstrap/js/popper.min.js"></script>
 <script src="lib/bootstrap/js/jquery-3.2.1.slim.min.js"></script>

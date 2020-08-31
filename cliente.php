@@ -5,12 +5,12 @@
 session_start();
 if(!isset($_SESSION['name'])){
     header("location:http://localhost/inmobiliaria/");
-}else if($_SESSION['rol']!='1'){
+}else if($_SESSION['rol']!='3'){
     header("location:http://localhost/inmobiliaria/");
 }
 
-require_once("models/administrador.php");
-$obj=new administrador();
+require_once("models/cliente.php");
+$obj=new cliente();
 ?>
 
 
@@ -45,9 +45,9 @@ $obj=new administrador();
           <!-- <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">-->
     </a>
         <div class="dropdown-menu bg-dark"> 
-          <a id="perfil" class="dropdown-item text-primary" href="perfil-admin.php">Perfil</a>
+          <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
           <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerCliente.php?action=salir">Salir</a>
         </div>
     <ul class="navbar-nav ">
         <!--<li class="nav-item">
@@ -58,26 +58,26 @@ $obj=new administrador();
         </li>
         -->
         <li class="nav-item">
-          <a id="inicio" class="nav-link" href="administrador.php">INICIO</a>
+          <a id="inicio" class="nav-link" href="cliente.php">INICIO</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="propiedad-cliente.php?numeros=0">Clientes</a>
+          <a class="dropdown-item text-primary" href="propiedad-cliente.php?numeros=0">Sistema</a>
           <a class="dropdown-item text-primary" href="#">Propias</a>
         </div>
         </li>
 <!-- Dropdown -->
-        <li class="nav-item dropdown">
+       <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Usuarios
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
+          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>-->
+          <!--<a class="dropdown-item text-primary" href="controllers/controllerEmpleado.php?action=ListarClientes">Clientes</a>-->
+          <!--<a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>-->
         </div>
         </li>
     </ul>
@@ -88,14 +88,14 @@ $obj=new administrador();
 
  <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top" style="paddin-botton:20px;">
-    <a class="navbar-brand" href="#">Administrador</a>
+    <a class="navbar-brand" href="#">Cliente</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="administrador.php">Inicio</a>
+          <a class="nav-link" href="cliente.php">Inicio</a>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
@@ -105,7 +105,7 @@ $obj=new administrador();
           <a class="dropdown-item text-primary" href="?a">Clientes</a>
         </div>
         </li>
-        <li class="nav-item">
+        <!--<li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
               Usuarios
           </a>
@@ -114,12 +114,12 @@ $obj=new administrador();
             <a class="dropdown-item" href="admin-tabla-clientes.php">Clientes</a>
             <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Administradores</a>
           </div>
-        </li>
+        </li>-->
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="perfil-admin.php">Perfil</a>
-            <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
+            <a class="dropdown-item" href="?a=perfil">Perfil</a>
+            <a class="dropdown-item" href="controllers/controllerCliente.php?action=salir">Exit</a>
           </div>
         </li>      
       </ul>
@@ -157,7 +157,7 @@ $obj=new administrador();
             <?php } ?>
            
           </p>
-          <h6 class="text-center">Administrador</h6>
+          <h6 class="text-center">Cliente</h6>
       </div>
 </div>
 

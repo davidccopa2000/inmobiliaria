@@ -1,16 +1,17 @@
+
 <?php
 /**
  *  IMPORTANDO EL PAQUETE DE LA SESION:::::::: 
  */
+
 session_start();
 if(!isset($_SESSION['name'])){
     header("location:http://localhost/inmobiliaria/");
 }else if($_SESSION['rol']!='1'){
     header("location:http://localhost/inmobiliaria/");
 }
-
 require_once("models/administrador.php");
-$obj=new administrador();
+$obj= new administrador();
 ?>
 
 
@@ -20,11 +21,14 @@ $obj=new administrador();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" href="assets/icon/EscuelaVirtual.png"/>
+    <link rel="shortcut icon" href="assets/icon/EscuelaVirtual.png">
     
 
     <link rel="stylesheet" href="lib/animate.css/animate.css">
     <link rel="stylesheet" href="lib/sweetAlert2/sweetalert2.min.css"> 
+    <link rel="stylesheet" href="assets/css/principal/login.css">
+    <link rel="stylesheet" href="assets/css/administrador/alerts.css" >
+   
     
 </head>
 <body class="background-gris">
@@ -33,7 +37,7 @@ $obj=new administrador();
 <!---------------------------- navergador principal pantalla grande---------------------------------------------------------------->
 <nav class="navbar d-none d-sm-none d-lg-flex navbar-expand-lg bg-dark navbar-dark fixed-top " style=" width: 100%;">
     <a class="navbar-brand dropdown dropdown-toggle mr-3" href="navbardrop" id="navbardrop" data-toggle="dropdown">
-           <?php
+            <?php
               
               $rs=$obj->getPhoto($_SESSION['id']);
               
@@ -42,10 +46,9 @@ $obj=new administrador();
             <?php } else { ?>
                 <img src="assets/img/administrador/admin3.jpg" alt="" style="width:40px; height:40px; border-radius:55%;">  
             <?php } ?>
-          <!-- <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">-->
     </a>
         <div class="dropdown-menu bg-dark"> 
-          <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
+          <a id="perfil" class="dropdown-item text-primary" href="perfil-admin.php">Perfil</a>
           <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
           <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
         </div>
@@ -58,15 +61,15 @@ $obj=new administrador();
         </li>
         -->
         <li class="nav-item">
-          <a id="inicio" class="nav-link" href="?a=inicio">INICIO</a>
+          <a id="inicio" class="nav-link" href="administrador.php">INICIO</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="propiedad-cliente.php?numeros=0">Clientes</a>
-          <a class="dropdown-item text-primary" href="#">Propias</a>
+          <a class="dropdown-item text-primary" href="propiedad-cliente.php">Propias</a>
+          <a class="dropdown-item text-primary" href="#">Clientes</a>
         </div>
         </li>
 <!-- Dropdown -->
@@ -74,11 +77,11 @@ $obj=new administrador();
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Usuarios
           </a>
-        <div class="dropdown-menu bg-dark">
+          <div class="dropdown-menu bg-dark">
           <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
+            <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
           <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
-        </div>
+          </div>
         </li>
     </ul>
     <a href="administrador.php">
@@ -87,7 +90,7 @@ $obj=new administrador();
 </nav> 
 
  <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top" style="paddin-botton:20px;">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top">
     <a class="navbar-brand" href="#">Administrador</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -95,7 +98,7 @@ $obj=new administrador();
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="?a=inicio">Inicio</a>
+          <a class="nav-link" href="administrador.php">Inicio</a>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
@@ -118,148 +121,13 @@ $obj=new administrador();
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="?a=perfil">Perfil</a>
+            <a class="dropdown-item" href="perfil-admin.php">Perfil</a>
             <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
           </div>
         </li>      
       </ul>
     </div>  
 </nav>
-
-
-
-
-<?php
-/**
- *  IMPORTANDO EL PAQUETE DE LA SESION:::::::: 
- */
-session_start();
-if(!isset($_SESSION['name'])){
-    header("location:http://localhost/inmobiliaria/");
-}else if($_SESSION['rol']!='1'){
-    header("location:http://localhost/inmobiliaria/");
-}
-
-require_once("models/administrador.php");
-$obj=new administrador();
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
-    <link rel="shortcut icon" href="assets/icon/EscuelaVirtual.png"/>
-    
-
-    <link rel="stylesheet" href="lib/animate.css/animate.css">
-    <link rel="stylesheet" href="lib/sweetAlert2/sweetalert2.min.css"> 
-    
-</head>
-<body class="background-gris">
-
-
-<!---------------------------- navergador principal pantalla grande---------------------------------------------------------------->
-<nav class="navbar d-none d-sm-none d-lg-flex navbar-expand-lg bg-dark navbar-dark fixed-top " style=" width: 100%;">
-    <a class="navbar-brand dropdown dropdown-toggle mr-3" href="navbardrop" id="navbardrop" data-toggle="dropdown">
-           <?php
-              
-              $rs=$obj->getPhoto($_SESSION['id']);
-              
-            if($rs->from_url ){ ?>
-                <img src="img-uploaded/<?php echo $rs->from_url;?>" alt="img_de admin" style="width:40px;height:40px; border-radius:55%;">
-            <?php } else { ?>
-                <img src="assets/img/administrador/admin3.jpg" alt="" style="width:40px; height:40px; border-radius:55%;">  
-            <?php } ?>
-          <!-- <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">-->
-    </a>
-        <div class="dropdown-menu bg-dark"> 
-          <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
-          <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
-        </div>
-    <ul class="navbar-nav ">
-        <!--<li class="nav-item">
-          <a id="inicio" class="nav-link" href="?a=inicio">INICIO</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?a=cursos">Inmuebles</a>
-        </li>
-        -->
-        <li class="nav-item">
-          <a id="inicio" class="nav-link" href="?a=inicio">INICIO</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                Inmuebles
-          </a>
-        <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="propiedad-cliente.php?numeros=0">Clientes</a>
-          <a class="dropdown-item text-primary" href="#">Propias</a>
-        </div>
-        </li>
-<!-- Dropdown -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                Usuarios
-          </a>
-        <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
-        </div>
-        </li>
-    </ul>
-    <a href="administrador.php">
-      <img src="assets/img/principal/logoin.svg" rel="icon" style="padding-left:1500px; width:93%"  position alt="">
-    </a>
-</nav> 
-
- <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top" style="paddin-botton:20px;">
-    <a class="navbar-brand" href="#">Administrador</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="?a=inicio">Inicio</a>
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                Inmuebles
-          </a>
-        <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="?a=pageDocente">Propias</a>
-          <a class="dropdown-item text-primary" href="?a">Clientes</a>
-        </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-              Usuarios
-          </a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Empleados</a>
-            <a class="dropdown-item" href="admin-tabla-clientes.php">Clientes</a>
-            <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Administradores</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="?a=perfil">Perfil</a>
-            <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
-          </div>
-        </li>      
-      </ul>
-    </div>  
-</nav>
-
-
-
-
 <!-- menu perfil---------------------------------------------------- -->
 <div class="content-wrapper mb-1 m-t3" style="margin-top:140px;">
 
@@ -272,9 +140,9 @@ $obj=new administrador();
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                <?php if($c->from_url){?>
+                <?php if($rs->from_url){?>
                     <img class="profile-user-img img-fluid img-circle"
-                       src="img-uploaded/<?php echo $c->from_url; ?>"
+                       src="img-uploaded/<--?php echo $c->from_url; ?>"
                        style="width:60%;">
                 
                 <?php }else{ ?>
@@ -289,7 +157,7 @@ $obj=new administrador();
                 <h3 class="profile-username text-center">Administrador</h3>
 
                 <?php 
-                $id=$_SESSION['ID'];
+                $id=$_SESSION['id'];
                 echo "<script>let idRegistro=$id</script>";
                 ?>
 
@@ -336,8 +204,6 @@ $obj=new administrador();
                   <!-- /.tab-pane -->
                   <!-- INSERT HER START THE PERFIL-->
 
-                        
-
                   <!-- END THE UNSERT-->
 
                   <div class="tab-pane" id="settings">
@@ -383,21 +249,31 @@ $obj=new administrador();
     </section>
 </div>
 
-
-
-
 <script src="lib/bootstrap/js/popper.min.js"></script>
 <script src="lib/bootstrap/js/jquery-3.2.1.slim.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="lib/sweetAlert2/sweetalert2.all.min.js"></script>
-</body>
-</html>
+<script src="assets/js/administrador/alert.js"></script>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
-
-
-<script src="lib/bootstrap/js/popper.min.js"></script>
-<script src="lib/bootstrap/js/jquery-3.2.1.slim.min.js"></script>
-<script src="lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="lib/sweetAlert2/sweetalert2.all.min.js"></script>
 </body>
 </html>

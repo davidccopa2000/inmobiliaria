@@ -48,7 +48,7 @@ $obj= new administrador();
             <?php } ?>
         </a>
             <div class="dropdown-menu bg-dark"> 
-              <a id="perfil" class="dropdown-item text-primary" href="?a=perfil">Perfil</a>
+              <a id="perfil" class="dropdown-item text-primary" href="perfil-admin.php">Perfil</a>
               <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
               <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
             </div>
@@ -121,7 +121,7 @@ $obj= new administrador();
             <li class="nav-item">
               <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="?a=perfil">Perfil</a>
+                <a class="dropdown-item" href="perfil-admin.php">Perfil</a>
                 <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
               </div>
             </li>      
@@ -385,13 +385,6 @@ $obj= new administrador();
                   ?>
               </tbody>
       
-      
-      
-      
-      
-      
-      
-      
       </table>
   </div>
 
@@ -627,85 +620,6 @@ foreach($users as $c):
 <?php endforeach;?>
 
      <!-- Aqui termina el botton modificar-->
-
-
-
-<!-- PINRT THE MODAL FOR VIEW TABLE BY BUTTON -->
-<!--div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Informacion Personal</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <!- desde aqui comienza el formulario ->
-
-        <div class="container">
-          <form id="formulario-info-update">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputNombres">Nombres</label>
-              <input type="text" class="form-control" id="inputNombres" placeholder="Nombres">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputApellidos">Apellidos</label>
-              <input type="text" class="form-control" id="inputApellidos" placeholder="Apellidos">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputEmail">Email</label>
-              <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputPassword">Password</label>
-              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="inputContacto">Contacto</label>
-            <input type="text" class="form-control" id="inputContacto" placeholder="telefono o celular">
-          </div>
-          <div class="form-group">
-            <label for="inputDomicilio">Domicilio</label>
-            <input type="text" class="form-control" id="inputDomicilio" placeholder="Jr ejemplo 888">
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputCity">City</label>
-              <input type="text" class="form-control" id="inputCity">
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputState">Sexo</label>
-              <select id="inputState" class="form-control">
-                <option selected>Opcion</option>
-                <option>Masculino</option>
-                <option>Femenino</option>
-              </select>
-            </div>
-            <div class="form-group col-md-2">
-              <label for="inputZip">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
-            </div>
-          </div>
-          
-          <button type="submit" class="btn btn-primary">Sign in</button>
-        </form>
-        </div>
-
-        <!- aqui teermina el formulario ->
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div--> 
-
 
 <script src="lib/bootstrap/js/popper.min.js"></script>
 <script src="lib/bootstrap/js/jquery-3.2.1.slim.min.js"></script>

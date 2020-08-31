@@ -10,12 +10,13 @@ if(isset($ctrl)){
 }else{
     require_once("config/database.php");
 }
-class administrador{
+class empleado{
     private $con=null;
 
     public function __construct(){
         $this->con=database::create()->conect(new mysql);
     }
+
     /*CRUD PEOPLE*/
     private function getIdPeople($dni){
         $sql="SELECT id_people FROM people WHERE dni=?";
@@ -122,9 +123,6 @@ class administrador{
         $rs->execute(array($idPeople));
     }
 
-
-
-
     /*GENERATE PHOTO OF ADMINIStRADOR*/
     public function getPhoto($id){
         $sql="SELECT from_url FROM people WHERE id_people=?";
@@ -136,7 +134,6 @@ class administrador{
 
 
     /*CRUD <EMPLOYEE>*/
-
 
     public function listUsersEmployee(){
         $sql="SELECT id_people,dni,first_name,last_name,adress,email,is_active FROM people WHERE is_user=2";
@@ -240,12 +237,6 @@ class administrador{
         $rs->execute(array($salary,$date_in,$date_out,$idPeople->id_people));
     }
 
-
-
-
-
-
-
     /** CRUD INMUEBLE NOT USE FOR MOMET    */
 
     public function listInmueble($var){
@@ -282,9 +273,9 @@ class administrador{
         }else{
             $page=0;
         }
-        $sql="SELECT a.id_inmuebe,a.identificador, a.nombre_inmueble ,e.nombre_t_inmueble ,d.nombre_distrito ,a.direccion ,a.superficie ,
+        $sql="SELECT a.identificador, a.nombre_inmueble ,e.nombre_t_inmueble ,d.nombre_distrito ,a.direccion ,a.numero ,a.superficie ,
         a.habitaciones ,a.baño ,a.cochera ,a.descripcion ,a.precio ,a.from_url ,a.fecha ,a.tipo ,b.id_operacion ,b.id_people ,
-        c.nombre_t_operacion,f.id_contrato,f.identificador as id_contrato,g.tiempo 
+        c.nombre_t_operacion,f.id_contrato,f.identificador as id_contrato,g.tiempo ,f.contrato 
         from inmueble as a inner join operacion as b on a.id_inmuebe=b.id_inmueble 
         inner join tipo_operacion as c on b.tipo_operacion=c.id_t_operacion inner join distrito as d on a.id_distrito =d.id_distrito
         inner join tipo_inmueble as e on a.tipo_inmueble=e.id_tipo_inmueble inner join contrato as f  on b.id_operacion=f.id_operacion
@@ -297,20 +288,12 @@ class administrador{
 		/*
 		 * METHOD IS POST
 		 * */
-    public function insertInmueble($dni,$nombre_inmueble,$tipo_inmueble,$ditrito,$direccion,$superficie,$habitacion,$baño,$cochera,$descripcion,$precio,$from_url,$tipo_operacion,$tipo_contrato,$tipo){
-        $sql="call spRegistrarInmueble(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $rs=$this->con->prepare($sql);
-        $rs->execute(array($dni,$nombre_inmueble,$tipo_inmueble,$ditrito,$direccion,$superficie,$habitacion,$baño,$cochera,$descripcion,$precio,$from_url,$tipo_operacion,$tipo_contrato,$tipo));
-    }
-    public function updateInmueble($id,$nombre_inmueble,$tipo_inmueble,$ditrito,$direccion,$superficie,$habitacion,$baño,$cochera,$descripcion,$precio,$from_url,$tipo_operacion,$tipo_contrato){
-        $sql="call spUpdateInmueble(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $rs=$this->con->prepare($sql);
-        $rs->execute(array($id,$nombre_inmueble,$tipo_inmueble,$ditrito,$direccion,$superficie,$habitacion,$baño,$cochera,$descripcion,$precio,$from_url,$tipo_operacion,$tipo_contrato));
-    }
-    
-        
+		public function insert_inmueble($dni,$n_inmu,$t_inmu,$dist,$direc,$num,$superf,$habit,$banio,$cochera,$descrip,$precio,$url,$tipo_oper,$name_t_cont,$contrato,$tipos){
+			  $sql="CALL spRegistrarInmueble(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				$rs=$this->con->prepare($sql);
+				$rs->execute(array($dni,$n_inmu,$t_inmu,$dist,$direc,$num,$superf,$habit,$banio,$cochera,$descrip,$precio,$url,$tipo_oper,$name_t_cont,$contrato,$tipos));
+		}
 		
-
 
     /** CERRANDO SESSIONN  */
     public function status_loguin_off($idPeople){

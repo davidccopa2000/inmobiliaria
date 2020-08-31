@@ -27,21 +27,19 @@ if(isset($_SERVER['REQUEST_METHOD'])){
             
             /**
              * usamos el objeto que nos retorna
-             * cuenta de administrador
              */
             
             session_start();
             $_SESSION['name']=$obj->first_name.' '.$obj->last_name;
             $_SESSION['rol']=$rol=$obj->is_user;
             $_SESSION['id']=$obj->id_people;
-            $_SESSION['dni']=$obj->dni;
             $people->status_loguin_on($_SESSION['id']);
 
             header("location:http://localhost/inmobiliaria/administrador.php");
       
         }else if($obj->is_user=='2' && $obj->is_active=='1'){
 
-                /**
+            /**
              * NOTA:::::----FALTA
              * configurar segun usuario
              */
@@ -51,18 +49,19 @@ if(isset($_SERVER['REQUEST_METHOD'])){
             $_SESSION['id']=$obj->id_people;
             $people->status_loguin_on($_SESSION['id']);
             header("location:http://localhost/inmobiliaria/empleado.php");
-            /**
-             * NOTA:::::----FALTA
-             * configurar segun usuario
-             */
       
-        }else if($obj->is_user=='3'){
+        }else if($obj->is_user=='3'&& $obj->is_active=='1'){
 
             /**
              * NOTA:::::----FALTA  ojito
              * configurar segun usuario
              */
-            header("location:http://localhost/inmobiliaria/");
+            session_start();
+            $_SESSION['name']=$obj->first_name.' '.$obj->last_name;
+            $_SESSION['rol']=$rol=$obj->is_user;
+            $_SESSION['id']=$obj->id_people;
+            $people->status_loguin_on($_SESSION['id']);
+            header("location:http://localhost/inmobiliaria/cliente.php");
       
         }else{
             header("location:http://localhost/inmobiliaria/");

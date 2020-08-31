@@ -183,7 +183,45 @@
         <span class="fa fa-search" aria-hidden="true"></span>
       </button>
 
-      <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; height:3rem; ">Login</button>
+      <button type="button" class="btn btn-b-n  d-none d-md-block ml-2"  style="width:2.5rem; margin=2rem;" 
+      onclick="document.getElementById('id01').style.display='block'" >
+        <img src="assets/icon/administrador/login.svg"  style="width:22px;" alt="img-login">
+      </button>
+
+      <div id="id01" class="modal" style="width:30%; margin:auto;">
+          
+          <form class="modal-content animate" action="controllers/controllerPeople.php" method="post" enctype="multipart/form-data">
+            <div class="imgcontainer">
+              <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+              <img src="assets/img/principal/img_avatar2.png"  style="width:20%;"  alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="username" required>
+
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" required>
+                
+              <button type="submit" action="">Login</button>
+              <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+              </label>
+              
+            </div>
+           
+           
+            <div class="container" style="background-color:#f1f1f1">
+              <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn" >Cancel</button>
+              <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+            
+          </form>
+         
+      </div>
+      <!--here is ending the login  -->
+
+      <!--<button onclick="document.getElementById('id01').style.display='block'" style="width:auto; height:3rem; ">Login</button>-->
 
       <div id="id01" class="modal">
           
