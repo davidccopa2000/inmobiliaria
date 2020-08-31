@@ -119,29 +119,49 @@ if(isset($_SERVER['REQUEST_METHOD'])){
                 $obj->updateAdmin($dni,$salary,$date_in,$date_out);
                // echo "estamos en update clint".$dni.$nombre.$apellido.$direccion.$tel.$email.$sexo.$birthDay.$user.$pass.$is_active.$is_user.$is_staff;
                header("location:http://localhost/inmobiliaria/admin-tabla-admins.php");
-						}else if($_GET['tipo']=='inmueble'){
-								$crtl=true;
-								$require_once('../models/administrador.php');
-								$obj= new administrador();//use method insert_inmueble(nr_param=17)
-								$dni=$_POST['data_dni'];
-								$n_inmu=$_POST['data_nombre_inmueble'];
-								$t_inmu=$_POST['data_tipo_inmueble'];
-								$distrito=$_POST['data_distrito'];
-								$direccion=$_POST['data_direccion'];
-								$numero=$_POST['data_numero'];
-								$superficie=$_POST['data_superficie'];
-								$habitaciones=$_POST['data_habitaciones'];
-								$banio=$_POST['data_banio'];
-								$cochera=$_POST['data_cochera'];
-								$descripcion=$_POST['data_descripcion'];
-								$precio=$_POST['data_precio'];
-								$url=$_POST['data_url'];
-								$tipo_operacion=$_POST['data_tipo_operacion'];
-								$name_contrato=$_POST['data_name_contrato'];
-								$tipos=$_POST['data_tipos'];
-								$$obj->insert_inmueble();//pase param order
-								header('location:http://localhost/inmobiliaria/propiedad-cliente.php');
-						}
+              
+            }else if($_GET['tipo']=="inmueble"){
+                    
+                $ctrl=true;
+                require_once("../models/administrador.php");
+                $obj= new administrador();
+                
+                $nombre=$_POST['nombre'];
+                $tipo_inmueble=$_POST['tipo_inmueble'];
+                $distrito=$_POST['distrito'];
+                $direccion=$_POST['direccion'];
+                $superficies=$_POST['superficies'];
+                $habitaciones=$_POST['habitaciones'];
+                $baños=$_POST['baños'];
+                $cocheras=$_POST['cocheras'];
+                $mensaje=$_POST['mensaje'];
+                $precio=$_POST['precio'];
+                
+                $tipo_operacion=$_POST['tipo_operacion'];
+                $tiempo=$_POST['tipo_contrato'];
+                if($tiempo==12){
+                    $tiempo="BLACK FRIDAY";
+                }
+                else if($tiempo==6){
+                    $tiempo="MONDAY FRIDAY";
+                }
+                else{
+                    $tiempo="ULTRABOOST";
+                }
+               
+                
+                $fileName=$_FILES['archivo']['name'];
+                $save=$_FILES['archivo']['tmp_name'];
+                move_uploaded_file($save,'../img-uploaded-in/'.$fileName);
+                $id=$_GET['id'];
+                echo "$id";
+               // $obj->updateInmueble($id,$nombre,$tipo_inmueble,$ditrito,$direccion,$superficies,$habitaciones,$baños,$cocheras,$mensaje,$precio,$fileName,$tipo_operacion,$tiempo);
+               
+               // echo "estamos en update clint".$dni.$nombre.$apellido.$direccion.$tel.$email.$sexo.$birthDay.$user.$pass.$is_active.$is_user.$is_staff;
+               //header("location:http://localhost/inmobiliaria/beta-view.php");
+              
+            }
+                        
             
         }else if(isset($_GET['tipo'])){
             if($_GET['tipo']=="cliente"){
@@ -251,7 +271,67 @@ if(isset($_SERVER['REQUEST_METHOD'])){
            // $ctrl=null;
                header("location:http://localhost/inmobiliaria/admin-tabla-admins.php");
            
+            }else if($_GET['tipo']=="inmueble"){
+                    session_start();
+                    $ctrl=true;
+                    require_once("../models/administrador.php");
+                    $obj= new administrador();
+                    $dni=$_SESSION['dni'];
+                    $nombre=$_POST['nombre'];
+                    $tipo=$_POST['tipo_inmueble'];
+                    $distrito=$_POST['distrito'];
+                    $direccion=$_POST['direccion'];
+                    $superficie=$_POST['superficie'];
+                    $habitaciones=$_POST['habitaciones'];
+                    $baños=$_POST['baños'];
+                    $cocheras=$_POST['cocheras'];
+                    $mensaje=$_POST['mensaje'];
+                    $precio=$_POST['precio'];
+                    $foto="NULL";
+                    $tipo_operacion=$_POST['tipo_operacion'];
+                    $tiempo=$_POST['tiempo'];
+                    if($tiempo==12){
+                        $tiempo="BLACK FRIDAY";
+                    }
+                    else if($tiempo==6){
+                        $tiempo="MONDAY FRIDAY";
+                    }
+                    else{
+                        $tiempo="ULTRABOOST";
+                    }
+                   
+                    $tipo_1=0;
+ 
+                    /*echo $dni;
+                    echo $nombre."-";
+                    echo $tipo."-";
+                    echo $distrito."-";
+                    echo $direccion."-";
+                    echo $superficie."-";
+                    echo $habitaciones."-";
+                    echo $baños."-";
+                    echo $cocheras."-";
+                    echo $mensaje."-";
+
+                    echo $precio."-";
+                    echo $foto."-";
+                    
+                    echo $tipo_operacion."-";
+                    echo $tiempo."-";
+                    echo $tipo_1;
+                    /*echo $depa."-";
+                    echo $provincia."-";
+                   
+                    
+                    echo $mensaje."-";*/
+
+                    //echo $dni;
+                    $obj->insertInmueble($dni,$nombre,$tipo,$distrito,$direccion,$superficie,$habitaciones,$baños,$cocheras,$mensaje,$precio,$foto,$tipo_operacion,$tiempo,$tipo_1);
+                     header("location:http://localhost/inmobiliaria/beta-view.php");
             }
+
+
+
         }
 
     }else if($_SERVER['REQUEST_METHOD']==='GET'){

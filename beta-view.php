@@ -274,276 +274,16 @@ $obj=new administrador();
 
 
 <!-- menu perfil---------------------------------------------------- -->
-<div class="content-wrapper mb-1 m-t1" style="margin-top:140px;">
+<div class="content-wrapper mb-1 m-t1" style="margin-top:8rem;">
 
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                <?php if($c->from_url){?>
-                    <img class="profile-user-img img-fluid img-circle"
-                       src="img-uploaded/<?php echo $c->from_url; ?>"
-                       style="width:60%;">
-                
-                <?php }else{ ?>
-                    <img class="profile-user-img img-fluid img-circle"
-                       src="assets/img/principal/img_avatar2.png"
-                       style="width:60%;">
-                
-                <?php } ?>
-                  
-                </div>
-             
-
-                <h3 class="profile-username text-center">Administrador</h3>
-
-                <?php 
-                $id=$_SESSION['ID'];
-                echo "<script>let idRegistro=$id</script>";
-                ?>
-
-                <ul id="listado-datos" class="list-group list-group-unbordered mb-3" >
-                    <!-- rellenar datos del usuario API -->
-                </ul>
-
-                <!--HERE THA ESTRAR
-                  -->
-
-                  
-
-                <!-- HERE THE ESTART THE GET OF THE ADMIN PERFIL-->
-              <!--  <a class="btn btn-info" onclick="document.getElementById('id02').style.display='block'"  >
-              <img src="assets/icon/administrador/agregar.svg" class="p-0" style="width: 40px;" >
-          </a>
-          <div id="id02" class="modal" style="width:58%; ">
-
-              
-            <div class="row" style="margin-top:0rem; margin-botton:0rem;">
-            <div class="col-md-3"></div>    
-
-            <div class="col-md-8 pr-4 pl-4 " style="background: #ffff ; border-radius:0.70rem;"  >
-            order-md-1-->
-            
-          
-         <!-- <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=admin" method="post" enctype="multipart/form-data" style="position-size:0 0 0 0;" novalidate >
-            
-                      <div class="imgcontainer">
-                        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-                      </div>
-                        <h4 class="mb-2 pt-0">MOdifica Este  Inmueble</h4>
-                        <div class="row" style="margin-top:40px;">
-                          <div class="col-md-5 mb-2 mt-1">
-                            <label for="firstName">Nombre del Inmueble</label>
-                            <input type="text" class="form-control" name="dni" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid first name is required.
-                            </div>
-                          </div>
-                          
-                          <div class="col-md-2 mb-3">
-                            <label for="lastName">N°Habitaciones</label>
-                            <input type="text" class="form-control" name="apellido" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid last name is required.
-                            </div>
-                          </div>
-                          
-                          <div class="col-md-2 mb-3">
-                            <label for="lastName">N° de Baños</label>
-                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid last name is required.
-                            </div>
-                          </div>
-                          <div class="col-md-2  mb-2">
-                            <label for="lastName">N° de Garages</label>
-                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid last name is required.
-                            </div>
-                          </div>
-                          <div class="col-md-2 mb-2">
-                            <label for="firstName">Superficie</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid first name is required.
-                            </div>
-                          </div>
-                          <div class="col-md-2 mb-3">
-                            <label for="address">Precio</label>
-                            <input type="text" class="form-control" name="direccion" style="width:100px;"  required>
-                            <div class="invalid-feedback">
-                             Please enter your shipping address.
-                            </div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="address">Dirección</label>
-                            <input type="text" class="form-control" name="direccion" style="width:500px;" placeholder="1350 Main St" required>
-                            <div class="invalid-feedback">
-                             Please enter your shipping address.
-                            </div>
-                          </div>
-                          
-
-                         <div class="col-md-6 mb-3">
-                          <label >Sexo </label> <br>
-                          <label>Masculino 
-                          <input type="radio"  name="radio" value="1">
-                          <span class="checkmark"></span>
-                          </label><br>
-                          <label >Femenino
-                          <input type="radio" name="radio" value="0">
-                          <span class="checkmark"></span>
-                          </label>
-                          
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4 mb-2" >
-                            <label for="country" >Tipo de Inmueble </label>
-                            <select class="custom-select d-block w-10"   name="country" required>
-                              <option value="" disabled >Seleccione...</option>
-                              <option>CASA</option>
-                              <option>DEPARTAMENTO</option>
-                            </select>
-                            <div class="invalid-feedback" >
-                              Please select a valid country.
-                            </div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="state">Tipo de Operación </label>
-                            <select class="custom-select d-block w-100" name="state" required>
-                              <option value="" disabled>Seleccione...</option>
-                              <option>VENTA</option>
-                              <option>ALQUILER</option>
-                              <option>TRASPASO</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="state">Duración </label>
-                            <select class="custom-select d-block w-100" name="state" required>
-                              <option value="" disabled>Seleccione...</option>
-                              <option>12</option>
-                              <option>6</option>
-                              <option>3</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
-                          </div>
-
-                          <div class="col-md-4 mb-2" >
-                            <label for="country" >Departamento </label>
-                            <select class="custom-select d-block w-10"   name="country" required>
-                              <option value="" disabled >Seleccione...</option>
-                              <option>LIMA</option>
-                              <option>CUSCO</option>
-                            </select>
-                            <div class="invalid-feedback" >
-                              Please select a valid country.
-                            </div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="state">Provincia </label>
-                            <select class="custom-select d-block w-100" name="state" required>
-                              <option value="" disabled>Seleccione...</option>
-                              <option>CUSCO</option>
-                              <option>LA CONVENCION</option>
-                              <option>ACOMAYO</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="state">DIstrito </label>
-                            <select class="custom-select d-block w-100" name="state" required>
-                              <option value="" disabled>Seleccione...</option>
-                              <option>SAN JERONIMO</option>
-                              <option>SAN SEBASTIAN</option>
-                              <option>SANTIAGO</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
-                          </div>
-                        
-
-
-                        </div>
-                       
-
-                        
-                        <label for="email">Descripción <span class="text-muted">(Optional)</span></label>
-                        <div class="mb-3">
-                          
-                          <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:800px;"></textarea>
-                          <div class="invalid-feedback">
-                            Please enter a valid email address for shipping updates.
-                          </div>
-                        </div>
-
-                        <div class="row">
-                        
-                          <div class="text-center" style="padding-left:190px;">
-                            <--?php if($c->from_url){?>
-                                <img class="profile-user-img img-fluid img-circle"
-                                  src="img-uploaded/<--?php echo $c->from_url; ?>"
-                                  style="width:30%;">
-                            
-                            <--?php }else{ ?>
-                                <img class="profile-user-img img-fluid img-circle"
-                                  src="assets/img/principal/img_avatar2.png"
-                                  style="width:300px; height:180px;">
-                            
-                            <--?php } ?>
-                            <div style="margin:20px 0 20px 20px; " >
-                              <input type="file" name="archivo" >
-                          </div>
-                              
-                          </div>
-                        </div>
-            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Registrar</button>
-            <div class="container" style="background-color:#f1f1f1">
-                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" >Cancel</button>
-                <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-          </form>
-        </div>
-
-        <div class="col-md-3"></div>  
-    </div>
-        
-          
-    </div>
-            -->
-                <!-- HERE ENDIG¡NG THE INSERT THE ADMIN PERFIL -->
-                <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-
-          </div>
+    
           <!-- /.col -->
-          <div class="col-md-8">
+          <div class="col-md-12">
             <div class="card">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Informes</a></li>
-        
+              <div class="card-header pr-10">
+                <ul class="nav nav-pills ">
+                  <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Listar</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="modal" data-target="#myModal">Registrar</a></li>       
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Info. adicional</a></li>
                 </ul>
               </div><!-- /.card-header -->
@@ -591,9 +331,10 @@ $obj=new administrador();
                   <div class="price-box d-flex">
                     <span class="price-a"><?php echo $inmueble->nombre_t_operacion.'  |  '.$inmueble->precio?> </span>
                   </div>
-                  <a href="#" class="link-a" onclick="document.getElementById('id02').style.display='block'" >Haga clic aquí para ver
+                  <a   class="link-a" style="color:white;" onclick="document.getElementById('id02').style.display='block'" >Haga clic aquí para ver
                     <span class="ion-ios-arrow-forward"></span>
                   </a>
+              
 
 
                 <!-- AAAH -->
@@ -601,6 +342,49 @@ $obj=new administrador();
                 <!--<a class="btn btn-info" onclick="document.getElementById('id02').style.display='block'"  >
               <img src="assets/icon/administrador/agregar.svg" class="p-0" style="width: 40px;" >
           </a>-->
+
+          
+          
+    
+
+
+                </div>
+                <div class="card-footer-a">
+                  <ul class="card-info d-flex justify-content-around">
+                    <li>
+                      <h4 class="card-info-title">Area</h4>
+                      <span><?php echo $inmueble->superficie ?>m
+                        <sup>2</sup>
+                      </span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Camas</h4>
+                      <span><?php echo $inmueble->habitaciones ?></span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Baños</h4>
+                      <span><?php echo $inmueble->baño ?></span>
+                    </li>
+                    <li>
+                      <h4 class="card-info-title">Garajes</h4>
+                      <span><?php echo $inmueble->cochera ?></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+         <?php  endforeach; ?>
+      
+      </div>
+
+<!--here start-->
+      <?php
+       $inmueble=$obj->list_limit(0,$_GET['numeros']);
+      foreach($inmueble as $c):
+    ?>
           <div id="id02" class="modal" style="width:58%; ">
 
               
@@ -610,9 +394,10 @@ $obj=new administrador();
             <div class="col-md-8 pr-1 pl-5 " style="background: #ffff ; border-radius:0.70rem;"  >
             <!--order-md-1-->
             
-          
-          <form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=inmueble" method="post" enctype="multipart/form-data" style="margin:0,0,0,40px," novalidate >
-            
+            <form class="needs-validation"  action="controllers/controllerAdministrador.php?tipo=inmueble&id=<?php echo $c->id_inmuebe; ?>" method="post" enctype="multipart/form-data"  novalidate>
+          <!--<form class="needs-validation" action="controllers/controllerAdministrador.php?tipo=inmueble" method="post" enctype="multipart/form-data" style="margin:0,0,0,40px," novalidate >-->
+                      
+ 
                       <div class="imgcontainer">
                         <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                       </div>
@@ -620,7 +405,7 @@ $obj=new administrador();
                         <div class="row" style="margin-top:40px;">
                           <div class="col-md-5 mb-2 mt-1">
                             <label for="firstName">Nombre del Inmueble</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="nombre" placeholder="" value="<?php echo $c->nombre_inmueble ?>" required>
                             <div class="invalid-feedback">
                               Valid first name is required.
                             </div>
@@ -628,7 +413,7 @@ $obj=new administrador();
                           
                           <div class="col-md-2 mb-3">
                             <label for="lastName">N°Habitaciones</label>
-                            <input type="text" class="form-control" name="habitacion" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="habitaciones" placeholder="" value="" required>
                             <div class="invalid-feedback">
                               Valid last name is required.
                             </div>
@@ -636,21 +421,21 @@ $obj=new administrador();
                           
                           <div class="col-md-2 mb-3">
                             <label for="lastName">N° de Baños</label>
-                            <input type="text" class="form-control" name="baño" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="baños" placeholder="" value="" required>
                             <div class="invalid-feedback">
                               Valid last name is required.
                             </div>
                           </div>
                           <div class="col-md-2  mb-2">
                             <label for="lastName">N° de Garages</label>
-                            <input type="text" class="form-control" name="garaje" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="garajes" placeholder="" value="" required>
                             <div class="invalid-feedback">
                               Valid last name is required.
                             </div>
                           </div>
                           <div class="col-md-2 mb-2">
                             <label for="firstName">Superficie</label>
-                            <input type="text" class="form-control" name="superficie" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="superficies" placeholder="" value="" required>
                             <div class="invalid-feedback">
                               Valid first name is required.
                             </div>
@@ -662,26 +447,14 @@ $obj=new administrador();
                              Please enter your shipping address.
                             </div>
                           </div>
-                          <div class="col-md-4 mb-3">
+                          <div class="col-md-6 mb-3">
                             <label for="address">Dirección</label>
-                            <input type="text" class="form-control" name="direccion" style="width:500px;" placeholder="1350 Main St" required>
+                            <input type="text" class="form-control" name="direccion"  placeholder="1350 Main St" required>
                             <div class="invalid-feedback">
                              Please enter your shipping address.
                             </div>
                           </div>
-                          
-
-                         <!-- <div class="col-md-6 mb-3">
-                          <label >Sexo </label> <br>
-                          <label>Masculino 
-                          <input type="radio"  name="radio" value="1">
-                          <span class="checkmark"></span>
-                          </label><br>
-                          <label >Femenino
-                          <input type="radio" name="radio" value="0">
-                          <span class="checkmark"></span>
-                          </label>
-                          -->
+                 
                         </div>
                         <div class="row">
                           <div class="col-md-4 mb-2" >
@@ -735,7 +508,7 @@ $obj=new administrador();
                           </div>
                           <div class="col-md-4 mb-3">
                             <label for="state">Provincia </label>
-                            <select class="custom-select d-block w-100" name="state" required>
+                            <select class="custom-select d-block w-100" name="provincia" required>
                               <option value="" disabled>Seleccione...</option>
                               <option>MANU</option>
                               <option>TAMBOPATA</option>
@@ -748,7 +521,7 @@ $obj=new administrador();
                           </div>
                           <div class="col-md-3 mb-3">
                             <label for="state">DIstrito </label>
-                            <select class="custom-select d-block w-100" name="state" required>
+                            <select class="custom-select d-block w-100" name="distrito" required>
                               <option value="" disabled>Seleccione...</option>
                               <option>HUEPETUHE</option>
                               <option>IÑAPARI</option>
@@ -772,7 +545,7 @@ $obj=new administrador();
                         <label for="email">Descripción <span class="text-muted">(Optional)</span></label>
                         <div class="mb-3">
                           
-                          <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:850px;"></textarea>
+                          <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:30rem;"></textarea>
                           <div class="invalid-feedback">
                             Please enter a valid email address for shipping updates.
                           </div>
@@ -798,7 +571,7 @@ $obj=new administrador();
                               
                           </div>
                         </div>
-            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Registrar</button>
+            <button class="btn btn-primary btn-lg btn-block mb-5" type="submit">Actualizar</button>
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" >Cancel</button>
                 <span class="psw">Forgot <a href="#">password?</a></span>
@@ -808,44 +581,12 @@ $obj=new administrador();
 
         <div class="col-md-3"></div>  
     </div>
-        
+     
           
     </div>
+    <?php endforeach;?>   
 
               <!--  -->
-
-
-                </div>
-                <div class="card-footer-a">
-                  <ul class="card-info d-flex justify-content-around">
-                    <li>
-                      <h4 class="card-info-title">Area</h4>
-                      <span><?php echo $inmueble->superficie ?>m
-                        <sup>2</sup>
-                      </span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Camas</h4>
-                      <span><?php echo $inmueble->habitaciones ?></span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Baños</h4>
-                      <span><?php echo $inmueble->baño ?></span>
-                    </li>
-                    <li>
-                      <h4 class="card-info-title">Garajes</h4>
-                      <span><?php echo $inmueble->cochera ?></span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-         <?php  endforeach; ?>
-      
-      </div>
       <div class="row">
         <div class="col-sm-12">
           <nav class="pagination-a">
@@ -877,77 +618,43 @@ $obj=new administrador();
       </div>
     </div>
   </section> 
+
                           </div>
                         </div>
                   </div>
 
+                      <!--HEAD_-->
+   <div class="container mt-2">
+ 
+  <!-- Button to Open the Modal -->
+  
 
-
-                  <div class="tab-pane" id="settings">
-                  <form class="form-horizontal"  style="padding:0 85px 0 85px;" >
-                        <h4 class="mb-3 pt-5">Agrega un Nuevo Inmueble</h4>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal"  >
+    <div class="modal-dialog" >
+      <div class="modal-content" style="width:60rem;">
+      
+        <!-- Modal Header -->
+        <div class="modal-header" >
+          <h4 class="modal-title  ">Agrega un Nuevo Inmueble</h4>
+          <button type="button" class="close " data-dismiss="modal">×</button>
+        </div>
+      
+        
+        <!-- Modal body -->
+        <form class="form-horizontal mb-3 pt-5"   action="controllers/controllerAdministrador.php?tipo=inmueble" novalidate method="post" style="padding:0 5rem 0 5rem;" >
+                        
                         <div class="row">
                           <div class="col-md-6 mb-3">
-                            <label for="firstName">Nombre del Inmueble</label>
-                            <input type="text" class="form-control" name="dni" placeholder="" value="" required>
+                            <label >Nombre del Inmueble</label>
+                            <input type="text" class="form-control" name="nombre" placeholder="" required>
                             <div class="invalid-feedback">
                               Valid first name is required.
                             </div>
                           </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="firstName">Superficie</label>
-                            <input type="text" class="form-control" name="nombre" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid first name is required.
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="lastName">N° de Habitaciones</label>
-                            <input type="text" class="form-control" name="apellido" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid last name is required.
-                            </div>
-                          </div>
-                          
-                          <div class="col-md-6 mb-3">
-                            <label for="lastName">N° de Baños</label>
-                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid last name is required.
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="lastName">N° de Garages</label>
-                            <input type="text" class="form-control" name="contacto" placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                              Valid last name is required.
-                            </div>
-                          </div>
-                          <div class="col-md-6 mb-3">
-                            <label for="lastName">Precio del Inmubele</label>
-                            <input type="number" class="form-control" name="salary" placeholder="" value="<?php echo $c->salary; ?>" required>
-                            <div class="invalid-feedback">
-                              Valid last name is required.
-                            </div>
-                          </div>
-                          
-
-                         <!-- <div class="col-md-6 mb-3">
-                          <label >Sexo </label> <br>
-                          <label>Masculino 
-                          <input type="radio"  name="radio" value="1">
-                          <span class="checkmark"></span>
-                          </label><br>
-                          <label >Femenino
-                          <input type="radio" name="radio" value="0">
-                          <span class="checkmark"></span>
-                          </label>
-                          -->
-                        </div>
-                        <div class="row">
-                          <div class="col-md-4 mb-2" >
-                            <label for="country" >Tipo de Inmueble </label>
-                            <select class="custom-select d-block w-10"   name="country" required>
+                          <div class="col-md-6 mb-2" >
+                            <label >Tipo de Inmueble </label>
+                            <select class="custom-select d-block w-10"   name="tipo_inmueble" required>
                               <option value="" disabled >Seleccione...</option>
                               <option>CASA</option>
                               <option>DEPARTAMENTO</option>
@@ -956,36 +663,9 @@ $obj=new administrador();
                               Please select a valid country.
                             </div>
                           </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="state">Tipo de Operación </label>
-                            <select class="custom-select d-block w-100" name="state" required>
-                              <option value="" disabled>Seleccione...</option>
-                              <option>VENTA</option>
-                              <option>ALQUILER</option>
-                              <option>TRASPASO</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
-                          </div>
-                          <div class="col-md-4 mb-3">
-                            <label for="state">TIEMPO DE PUBLICIDAD enMESES </label>
-                            <select class="custom-select d-block w-100" name="state" required>
-                              <option value="" disabled>Seleccione...</option>
-                              <option>12</option>
-                              <option>6</option>
-                              <option>3</option>
-
-                            </select>
-                            <div class="invalid-feedback">
-                              Please provide a valid state.
-                            </div>
-                          </div>
-
                           <div class="col-md-4 mb-2" >
                             <label for="country" >Departamento </label>
-                            <select class="custom-select d-block w-10"   name="country" required>
+                            <select class="custom-select d-block w-10"   name="depa" required>
                               <option value="" disabled >Seleccione...</option>
                               <option>LIMA</option>
                               <option>CUSCO</option>
@@ -996,7 +676,7 @@ $obj=new administrador();
                           </div>
                           <div class="col-md-4 mb-3">
                             <label for="state">Provincia </label>
-                            <select class="custom-select d-block w-100" name="state" required>
+                            <select class="custom-select d-block w-100" name="provincia" required>
                               <option value="" disabled>Seleccione...</option>
                               <option>CUSCO</option>
                               <option>LA CONVENCION</option>
@@ -1009,82 +689,141 @@ $obj=new administrador();
                           </div>
                           <div class="col-md-4 mb-3">
                             <label for="state">DIstrito </label>
-                            <select class="custom-select d-block w-100" name="state" required>
+                            <select class="custom-select d-block w-100" name="distrito" required>
                               <option value="" disabled>Seleccione...</option>
                               <option>SAN JERONIMO</option>
                               <option>SAN SEBASTIAN</option>
                               <option>SANTIAGO</option>
+                              <option>PUERTO MALDONADO</option>
+                              <option>MAZUKO</option>
+                              <option>IBERIA</option>
+                              
+                            </select>
+                            <div class="invalid-feedback">
+                              Please provide a valid state.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label >Superficie</label>
+                            <input type="text" class="form-control" name="superficie" placeholder=""  required>
+                            <div class="invalid-feedback">
+                              Valid first name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label >N° de Habitaciones</label>
+                            <input type="text" class="form-control" name="habitaciones" placeholder=""  required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          
+                          <div class="col-md-6 mb-3">
+                            <label >N° de Baños</label>
+                            <input type="text" class="form-control" name="baños" placeholder=""  required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label >N° de Garages</label>
+                            <input type="text" class="form-control" name="cocheras" placeholder=""  required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                          <label for="address">Dirección</label>
+                          <input type="text" class="form-control" name="direccion" placeholder="1350 Main St" required>
+                          <div class="invalid-feedback">
+                            Please enter your shipping address.
+                          </div>
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            <label >Precio del Inmubele</label>
+                            <input type="text" class="form-control" name="precio" placeholder=""  required>
+                            <div class="invalid-feedback">
+                              Valid last name is required.
+                            </div>
+                          </div>
+                          <div class="col-md-6 mb-4">
+                            <label >Tipo de Operación </label>
+                            <select class="custom-select d-block w-200" name="tipo_operacion" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>VENTA</option>
+                              <option>ALQUILER</option>
+                              <option>TRASPASO</option>
+                              <option>ANTICRESIS</option>
 
                             </select>
                             <div class="invalid-feedback">
                               Please provide a valid state.
                             </div>
                           </div>
-                        
-                        
+                          <div class="col-md-6 mb-4">
+                            <label >TIEMPO Publicado </label>
+                            <select class="custom-select d-block w-200" name="tiempo" required>
+                              <option value="" disabled>Seleccione...</option>
+                              <option>12</option>
+                              <option>6</option>
+                              <option>3</option>
 
-
-                        </div>
-                        <div class="mb-3">
-                          <label for="address">Dirección</label>
-                          <input type="text" class="form-control" name="direccion" placeholder="1350 Main St" required>
-                          <div class="invalid-feedback">
-                            Please enter your shipping address.
-                          </div>
-                        </div>
-
-                        
-                        <label for="email">Descripción <span class="text-muted">(Optional)</span></label>
-                        <div class="mb-5">
-                          
-                          <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:1180px;"></textarea>
-                          <div class="invalid-feedback">
-                            Please enter a valid email address for shipping updates.
-                          </div>
-                        </div>
-
-                        
-                        
-
-
-                        <div class="row">
-                          <div class="col-md-5 mb-3">
-                            <label for="country"> Inmueble de :. </label>
-                            <select class="custom-select d-block w-100" name="country" required>
-                              <option value="" disabled >Seleccione...</option>
-                              <option>Cliente</option>
-                              <option>Propiedad de la empresa</option>
                             </select>
                             <div class="invalid-feedback">
-                              Please select a valid country.
+                              Please provide a valid state.
                             </div>
                           </div>
+                          <label for="email">Descripción <span class="text-muted">(Optional)</span></label>
+                          <div class="mb-5">
+                            
+                            <textarea name="mensaje" placeholder="Comparte tu opinión con el autor!" style="width:50rem;"></textarea>
+                            <div class="invalid-feedback">
+                              Please enter a valid email address for shipping updates.
+                            </div>
+                          </div>
+                        
+                        
+                        </div>
+                        <div class="row">
+                        </div>
+                        
+                        <div class="row">
+                          
                           <div class="text-center" style="padding-left:190px;">
-                            <?php if($c->from_url){?>
-                                <img class="profile-user-img img-fluid img-circle"
-                                  src="img-uploaded/<?php echo $c->from_url; ?>"
-                                  style="width:30%;">
-                            
-                            <?php }else{ ?>
-                                <img class="profile-user-img img-fluid img-circle"
-                                  src="assets/img/principal/img_avatar2.png"
-                                  style="width:300px; height:180px;">
-                            
-                            <?php } ?>
+                         
                             <div style="margin:20px 0 20px 20px; " >
                               <input type="file" name="archivo" >
-                          </div>
+                           </div>
                               
                           </div>
                         </div>
                   
                         
-                      <div class="form-group row" style="margin:0 100px 0 0;">
-                        <div class="offset-sm-2 col-sm-10">
+                      <div class="form-group row" >
+                        <div class="offset-sm-3 col-sm-6">
                           <button id="infoAdicional" type="submit" class="btn btn-danger">Guardar</button>
                         </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                       </div>
+                      </div>
+                      
                     </form>
+        
+        <!-- Modal footer -->
+        
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+  <!-- FINSIH!-->
+
+                  <div class="tab-pane" id="settings">
+                  
                   </div>
 
                   <!-- /.tab-pane -->
@@ -1094,7 +833,7 @@ $obj=new administrador();
 
                   <!-- END THE UNSERT-->
 
-                  <div class="tab-pane" id="settings" style="padding:0px 150px 0px 150px;">
+                  <!--<div class="tab-pane" id="settings" style="padding:0px 150px 0px 150px;">
                    <form class="form-horizontal"  >
                         <h4 class="mb-3 pt-5">Agrega un Nuevo Inmueble</h4>
                         <div class="row">
@@ -1143,7 +882,7 @@ $obj=new administrador();
                           </div>
                           
 
-                         <!-- <div class="col-md-6 mb-3">
+                         <--!-- <div class="col-md-6 mb-3">
                           <label >Sexo </label> <br>
                           <label>Masculino 
                           <input type="radio"  name="radio" value="1">
@@ -1153,7 +892,7 @@ $obj=new administrador();
                           <input type="radio" name="radio" value="0">
                           <span class="checkmark"></span>
                           </label>
-                          -->
+                          
                         </div>
                         <div class="row">
                           <div class="col-md-4 mb-2" >
@@ -1200,14 +939,14 @@ $obj=new administrador();
 
                             <div class="col-md-6 mb-3">
                                 <label for="lastName">Fecha de Entrada</label>
-                                <input type="date" class="form-control" name="date_in" placeholder="" value="<?php echo $c->date_in; ?>" required>
+                                <input type="date" class="form-control" name="date_in" placeholder="" value="<--?php echo $c->date_in; ?>" required>
                                 <div class="invalid-feedback">
                                 Valid last name is required.
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="lastName">Fecha de Salida</label>
-                                <input type="date" class="form-control" name="date_out" placeholder="" value="<?php echo $c->date_out; ?>" required>
+                                <input type="date" class="form-control" name="date_out" placeholder="" value="<--?php echo $c->date_out; ?>" required>
                                 <div class="invalid-feedback">
                                 Valid last name is required.
                                 </div>
@@ -1300,17 +1039,17 @@ $obj=new administrador();
                         </div>
                   
                         <div class="text-center" >
-                            <?php if($c->from_url){?>
+                            <--?php if($c->from_url){?>
                                 <img class="profile-user-img img-fluid img-circle"
-                                  src="img-uploaded/<?php echo $c->from_url; ?>"
+                                  src="img-uploaded/<--?php echo $c->from_url; ?>"
                                   style="width:30%;">
                             
-                            <?php }else{ ?>
+                            <--?php }else{ ?>
                                 <img class="profile-user-img img-fluid img-circle"
                                   src="assets/img/principal/img_avatar2.png"
                                   style="width:300px; height:180px;">
                             
-                            <?php } ?>
+                            <--?php } ?>
                             <div style="margin:20px 0 20px 20px; " >
                               <input type="file" name="archivo" >
                           </div>
@@ -1323,7 +1062,7 @@ $obj=new administrador();
                       </div>
                     </form>
                   </div>
-                  <!-- /.tab-pane -->
+                  <--!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
               </div><!-- /.card-body -->

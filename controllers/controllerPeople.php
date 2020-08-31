@@ -27,12 +27,14 @@ if(isset($_SERVER['REQUEST_METHOD'])){
             
             /**
              * usamos el objeto que nos retorna
+             * cuenta de administrador
              */
             
             session_start();
             $_SESSION['name']=$obj->first_name.' '.$obj->last_name;
             $_SESSION['rol']=$rol=$obj->is_user;
             $_SESSION['id']=$obj->id_people;
+            $_SESSION['dni']=$obj->dni;
             $people->status_loguin_on($_SESSION['id']);
 
             header("location:http://localhost/inmobiliaria/administrador.php");

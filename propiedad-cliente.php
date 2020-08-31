@@ -21,6 +21,10 @@ $obj=new administrador();
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
     <link rel="shortcut icon" href="assets/icon/EscuelaVirtual.png"/>
     
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="lib/animate.css/animate.css">
     <link rel="stylesheet" href="lib/sweetAlert2/sweetalert2.min.css"> 
@@ -38,6 +42,7 @@ $obj=new administrador();
     
     <link href="css/style.css" rel="stylesheet">
     <link href="assets/css/principal/login.css" rel="stylesheet">
+    
     
 </head>
 <body class="background-gris">
@@ -139,6 +144,7 @@ $obj=new administrador();
 </nav>
 
 
+ 
 <section class="intro-single">
     <div class="container">
       <div class="row">
@@ -163,6 +169,7 @@ $obj=new administrador();
       </div>
     </div>
    
+
   </section>
   <!--/ Intro Single End /-->
 
@@ -174,6 +181,8 @@ $obj=new administrador();
 
   <!--/ Property Grid Star /-->
   <section class="property-grid grid">
+
+              
     <div class="container">
       <div class="row">
       
