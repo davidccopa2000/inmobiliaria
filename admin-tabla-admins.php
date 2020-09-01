@@ -209,8 +209,7 @@ $obj= new administrador();
               <input type="radio" name="radio" value="0">
               <span class="checkmark"></span>
               </label>
-              
-            </div>
+              </div>
 
               <div class="col-md-6 mb-3">
                 <label for="lastName">Salario</label>

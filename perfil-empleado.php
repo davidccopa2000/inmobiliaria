@@ -7,11 +7,11 @@
 session_start();
 if(!isset($_SESSION['name'])){
     header("location:http://localhost/inmobiliaria/");
-}else if($_SESSION['rol']!='1'){
+}else if($_SESSION['rol']!='2'){
     header("location:http://localhost/inmobiliaria/");
 }
-require_once("models/administrador.php");
-$obj= new administrador();
+require_once("models/empleado.php");
+$obj= new empleado();
 ?>
 
 
@@ -34,10 +34,11 @@ $obj= new administrador();
 <body class="background-gris">
 
 
+
 <!---------------------------- navergador principal pantalla grande---------------------------------------------------------------->
 <nav class="navbar d-none d-sm-none d-lg-flex navbar-expand-lg bg-dark navbar-dark fixed-top " style=" width: 100%;">
     <a class="navbar-brand dropdown dropdown-toggle mr-3" href="navbardrop" id="navbardrop" data-toggle="dropdown">
-            <?php
+           <?php
               
               $rs=$obj->getPhoto($_SESSION['id']);
               
@@ -46,9 +47,10 @@ $obj= new administrador();
             <?php } else { ?>
                 <img src="assets/img/administrador/admin3.jpg" alt="" style="width:40px; height:40px; border-radius:55%;">  
             <?php } ?>
+          <!-- <img src="assets/img/administrador/admin3.jpg" alt="Logo" style="width:40px; border-radius:55%;">-->
     </a>
         <div class="dropdown-menu bg-dark"> 
-          <a id="perfil" class="dropdown-item text-primary" href="perfil-admin.php">Perfil</a>
+          <a id="perfil" class="dropdown-item text-primary" href="perfil-empleado.php">Perfil</a>
           <a class="dropdown-item text-primary" href="#configuracion">Configuracion</a>
           <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=salir">Salir</a>
         </div>
@@ -61,15 +63,15 @@ $obj= new administrador();
         </li>
         -->
         <li class="nav-item">
-          <a id="inicio" class="nav-link" href="administrador.php">INICIO</a>
+          <a id="inicio" class="nav-link" href="?a=inicio">INICIO</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
           </a>
         <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="propiedad-cliente.php">Propias</a>
-          <a class="dropdown-item text-primary" href="#">Clientes</a>
+          <a class="dropdown-item text-primary" href="propiedad-cliente.php?numeros=0">Clientes</a>
+          <a class="dropdown-item text-primary" href="#">Propias</a>
         </div>
         </li>
 <!-- Dropdown -->
@@ -77,28 +79,28 @@ $obj= new administrador();
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Usuarios
           </a>
-          <div class="dropdown-menu bg-dark">
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>
-            <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarClientes">Clientes</a>
-          <a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>
-          </div>
+        <div class="dropdown-menu bg-dark">
+          <!--<a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarEmpleados">Empleados</a>-->
+          <a class="dropdown-item text-primary" href="controllers/controllerEmpleado.php?action=ListarClientes">Clientes</a>
+          <!--<a class="dropdown-item text-primary" href="controllers/controllerAdministrador.php?action=ListarAdmin">Administradores</a>-->
+        </div>
         </li>
     </ul>
-    <a href="administrador.php">
+    <a href="empleado.php">
       <img src="assets/img/principal/logoin.svg" rel="icon" style="padding-left:1500px; width:93%"  position alt="">
     </a>
 </nav> 
 
  <!------------------------ navergador principal pantalla pequeña---------------------------------------------------------------->
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top">
-    <a class="navbar-brand" href="#">Administrador</a>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark  d-lg-none fixed-top" style="paddin-botton:20px;">
+    <a class="navbar-brand" href="#">Empleado</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="administrador.php">Inicio</a>
+          <a class="nav-link" href="?a=inicio">Inicio</a>
           <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                 Inmuebles
@@ -113,15 +115,15 @@ $obj= new administrador();
               Usuarios
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Empleados</a>
+            <!--<a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Empleados</a>-->
             <a class="dropdown-item" href="admin-tabla-clientes.php">Clientes</a>
-            <a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Administradores</a>
+            <!--<a class="dropdown-item" href="#controllers/controllerAdminstrador.php?action=salir">Administradores</a>-->
           </div>
         </li>
         <li class="nav-item">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Configuracion</a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="perfil-admin.php">Perfil</a>
+            <a class="dropdown-item" href="perfil-empleado.php">Perfil</a>
             <a class="dropdown-item" href="controllers/controllerAdminstrador.php?action=salir">Exit</a>
           </div>
         </li>      
@@ -154,7 +156,7 @@ $obj= new administrador();
                   
                 </div>
 
-                <h3 class="profile-username text-center">Administrador</h3>
+                <h3 class="profile-username text-center">Empleado</h3>
 
                 <?php 
                 $id=$_SESSION['id'];
